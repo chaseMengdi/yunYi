@@ -1,0 +1,72 @@
+<!--pages/model-1/model-1.wxml-->
+<!-- <scroll-view scroll-y="true" style="height: 675px"> -->
+<!--by唐桥保  -->
+<template name='t1'>
+
+  <view class="trip1" background-attachment: fixed>
+
+    <view class="trip1-wps">
+      <view class="day">
+        <view class="day-marker">
+          <text class="circle"></text>回忆一</view>
+        <view class="wp-sep clear-both"></view>
+        <view class="day-content">
+          <image mode="widthFix" class="cover" src="{{image1}}" id='1' bindtap="pickImage"></image>
+        </view>
+        <textarea auto-height name='text1' disabled='{{!userIsOwner}}' value='{{text1}}'></textarea>
+      </view>
+    </view>
+
+    <view class="trip1-wps">
+      <view class="day">
+        <view class="day-marker">
+          <text class="circle"></text>回忆二</view>
+        <view class="wp-sep clear-both"></view>
+        <view class="day-content">
+          <image mode="widthFix" class="cover" src="{{image2}}" id='2' bindtap="pickImage"></image>
+        </view>
+        <textarea disabled='{{!userIsOwner}}' auto-height name='text2' value='{{text2}}'></textarea>
+      </view>
+    </view>
+
+    <view class="trip1-wps">
+      <view class="day">
+        <view class="day-marker">
+          <text class="circle"></text>回忆三</view>
+        <view class="wp-sep clear-both"></view>
+        <view class="day-content">
+          <image mode="widthFix" class="cover" src="{{image3}}" id='3' bindtap="pickImage"></image>
+        </view>
+        <textarea disabled='{{!userIsOwner}}' auto-height name='text3' value='{{text3}}'></textarea>
+      </view>
+    </view>
+    <view class="trip1-wps">
+      <view class="day">
+        <view class="day-marker">
+          <text class="circle"></text>回忆四</view>
+        <view class="wp-sep clear-both"></view>
+        <view class="day-content">
+          <image mode="widthFix" class="cover" src="{{image4}}" id='4' bindtap="pickImage">
+            </image>
+        </view>
+        <textarea disabled='{{!userIsOwner}}' auto-height name='text4' value='{{text4}}'></textarea>
+      </view>
+    </view>
+
+    <view class="trip1-wps">
+      <view class="day">
+        <view class="day-marker">
+          <text class="circle"></text>回忆五</view>
+        <view class="wp-sep clear-both"></view>
+        <view class="day-content">
+          <image data-abc='{{}}' mode="widthFix" class="cover" src="{{image5}}" id='5' bindtap="pickImage"></image>
+        </view>
+        <textarea disabled='{{!userIsOwner}}' auto-height name='text5' value='{{text5}}'></textarea>
+      </view>
+    </view>
+
+
+  </view>
+
+</template>
+<!-- </scroll-view> -->

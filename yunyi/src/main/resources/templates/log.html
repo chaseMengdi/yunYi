@@ -1,0 +1,118 @@
+﻿<!--唐桥保-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>登录日志</title>
+</head>
+<body>
+
+<header class="navbar-wrapper">
+	<div class="navbar navbar-fixed-top" th:include="head::myheader"></div>
+</header>
+<aside class="Hui-aside">
+	<div class="menu_dropdown bk_2" th:include="nav::menu"></div>
+</aside>
+<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
+
+<section class="Hui-article-box">
+	<div id="Hui-tabNav" class="Hui-tabNav hidden-xs" th:include="shead::sheader"></div>
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 登录日志  <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<div class="page-container">
+		<div class="mt-20">
+			<table class="table table-border table-bordered table-hover table-bg table-sort">
+				<thead>
+				<tr class="text-c">
+					<th>管理员ID</th>
+					<th>管理员昵称</th>
+					<th>登录时间</th>
+				</tr>
+				</thead>
+				<tbody id="record">
+				<tr  class="text-c" th:each="Log : ${logs}">
+					<td th:text="${Log.getAdminID()}"> 1001 </td>
+					<td th:text="${Log.getAdminName()}"> 1001 </td>
+					<td th:text="${Log.getLogTime()}"> 1001 </td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		</br>
+
+		<span style="font-size:14px;"></span>
+		<button type="button" class="btn btn-primary" onclick="decpage()">上一页</button>
+		第<span  id="show" name="page" style="width: 50px" ></span>页
+		<button type="button" class="btn btn-primary" onclick="addpage()">下一页</button>
+	</div>
+</section>
+<script>
+    var pages=1;
+    function Paging(index) {
+
+        var RankInfo = document.getElementById('record');
+        var totalPage = RankInfo.rows.length; //总条数
+        var pageSize = 10;//每页显示条数
+        var pageNumber = Math.ceil(totalPage / pageSize); //总页数
+        var currentPage = index;//当前页数
+        var start_row = (currentPage - 1) * pageSize;//开始显示的行
+        var end_row = currentPage * pageSize;//结束显示的行
+
+        end_row = (end_row > totalPage) ? totalPage : end_row;
+        for (var i = 0; i < totalPage; i++) {
+            var irow = RankInfo.rows[i];
+            if (i >= start_row && i < end_row) {
+                irow.style.display = 'table-row';
+            } else {
+                irow.style.display = 'none';
+            }
+        }
+
+    }
+    function addpage(){
+        var RankInfo = document.getElementById('record');
+        var totalPage = RankInfo.rows.length; //总条数
+        var pageSize = 10;//每页显示条数
+        var pageNumber = Math.ceil(totalPage / pageSize); //总页数
+
+        if(pages<pageNumber) {
+            pages = pages + 1;
+            Paging(pages);
+            document.getElementById("show").innerHTML = pages;
+        }else alert("已是最后一页！")
+    }
+
+    function decpage(){
+        if(pages>1) {
+            pages = pages - 1;
+
+            Paging(pages);
+            document.getElementById("show").innerHTML = pages;
+        }else alert("已是第一页！")
+    }
+
+    Paging(1);
+    document.getElementById("show").innerHTML = pages;
+</script>>
+
+<script src="jquery.min-2.0.0.js" type="text/javascript"></script>
+
+</body>
+</html>

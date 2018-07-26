@@ -1,0 +1,13 @@
+.container{
+    padding: 120rpx ;
+    margin-top: 20rpx;
+}
+button{
+  margin-top: 100rpx;
+}
+swiper{
+  height: 800rpx;
+} 
+image{
+  width: 500rpx;
+}

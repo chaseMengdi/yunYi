@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<!--by罗子璇-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div class="navbar navbar-fixed-top" th:fragment="myheader">
+    <div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">云忆后台管理</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a>
+        <span class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span>
+        <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+        <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
+            <ul class="cl">
+                <li>超级管理员</li>
+                <!--<li><a th:href="@{/getAdminName}"></a></li>-->
+                <li class="dropDown dropDown_hover">
+                        <li id="Hui-msg"><a th:href="@{/login1}">退出</a></li>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+</html>

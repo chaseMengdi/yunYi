@@ -1,0 +1,12 @@
+<!--选择模板  -->
+<!--by唐桥保  -->
+<view class="container">
+    <swiper bindchange='onSlideChangeEnd' indicator-dots="{{indicatorDots}}" style='width:95%;' autoplay="true" >
+      <block wx:for="{{background}}">
+        <swiper-item>
+          <view><image   src="{{item.url}}"  mode="widthFix"/></view>
+        </swiper-item>
+      </block>
+    </swiper>
+  <button type='primary' bindtap='confirmSel'>确认选择</button>
+</view>

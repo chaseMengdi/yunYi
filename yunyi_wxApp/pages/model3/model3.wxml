@@ -1,0 +1,56 @@
+
+<!--by刘博谦  -->
+<template name="t3">
+<!-- <text>第一部分</text> -->
+<block>
+<view class="info-items" >
+    <view class="infotext" height='5px' >
+        <image id='1' bindtap="pickImage" class="userinfo-avatar" src="{{image1}}" ></image>
+    </view>
+    <textarea name='text1' disabled='{{!userIsOwner}}' value='{{text1}}' class='item' placeholder="请输入图片描述"></textarea>
+</view>
+</block>
+<!-- <text>第二部分</text> -->
+<block>
+<view class="view-contain1">
+  <textarea name='text2' disabled='{{!userIsOwner}}' value='{{text2}}' class='item1' placeholder="请输入图片描述"></textarea>
+  <view class="item2" >
+     <view class="infotext" height='5px'>
+        <image id='2' bindtap="pickImage" class="item2" src="{{image2}}"  ></image>
+      </view>
+      </view>
+</view>
+</block>
+<!-- <text>第三部分</text> -->
+<block>
+  <view class="view-contain1">
+    <view class="items2" >
+      <view class="infotext"  height='5px'>
+        <image id='3' bindtap="pickImage" class="item2" src="{{image3}}"  ></image>
+      </view>
+    </view>
+    <textarea name='text3' disabled='{{!userIsOwner}}' value='{{text3}}' class='item1' placeholder="请输入图片描述"></textarea>
+  </view>
+</block>
+<!-- <text>第四部分</text> -->
+<block>
+   
+    <view class="info-items" >
+    <textarea name='text4' disabled='{{!userIsOwner}}' value='{{text4}}' class='item' placeholder="请输入图片描述"></textarea>
+    <view class="infotext" height='5px'>
+        <image   id='4' bindtap="pickImage" class="userinfo-avatar" src="{{image4}}" ></image>
+      </view>
+      </view>
+</block>
+<!-- <text>第五部分</text> -->
+<block>
+  <view class="view-contain1">
+    <view class="items2" >
+     <view class="infotext" height='5px'>
+        <image id='5' bindtap="pickImage" class="item2" src="{{image5}}"  ></image>
+      </view>
+    </view>
+     <textarea name='text5' disabled='{{!userIsOwner}}' value='{{text5}}' class='item1' placeholder="请输入图片描述"></textarea>
+  </view>
+</block>
+</template>

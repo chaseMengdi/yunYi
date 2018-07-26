@@ -1,0 +1,47 @@
+/* pages/model-1/model-1.wxss */
+/*by唐桥保  */
+.trip1{
+  background-image: url('http://d.5857.com/pp_170906/009.jpg') ;
+  background-size: contain; 
+  background-attachment: fixed;
+}
+.trip1-wps{
+  padding: 40rpx 30rpx 0; 
+  margin-top: 36rpx;
+}
+.day .wp-sep{
+  background: #e7ddc6;
+  height: 36rpx;
+  margin-left: 20rpx;
+  width: 8rpx;
+}
+.day .day-marker{
+  color: #a8915e;
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 32rpx;
+  height: 32rpx;
+}
+.day .circle{
+  display: inline-block;
+  width: 16rpx;
+  height: 16rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  border: 8rpx solid #e7ddc6;
+  margin: 0 8rpx;
+  vertical-align: text-bottom;
+}
+.day-content .cover{
+  width:100%;
+  position: relative; 
+  vertical-align: bottom; 
+}
+textarea{
+  border: 1rpx solid 	#ccc;
+  margin: 0 auto;
+  padding:20rpx 20rpx;
+  font-size:16px;
+  line-height:1.2;
+  color:#000;
+}

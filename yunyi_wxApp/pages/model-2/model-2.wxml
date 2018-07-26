@@ -1,0 +1,43 @@
+<!--by张一帆  -->
+<template name="t2">
+<!--主盒子-->
+<view class="container">
+  <!--左侧栏-->
+  <view class="nav_left">
+    <!--当前项的id等于item项的id，那个就是当前状态-->
+    <!--用data-index记录这个数据在数组的下标位置，使用data-id设置每个item的id值，供打开2级页面使用-->
+    <view class="nav_left_items {{curIndex == 0 ? 'active' : ''}}" bindtap="switchRightTab" data-index="0">回忆1</view>
+    <view class="nav_left_items {{curIndex == 1 ? 'active' : ''}}" bindtap="switchRightTab" data-index="1">回忆2</view>
+    <view class="nav_left_items {{curIndex == 2 ? 'active' : ''}}" bindtap="switchRightTab" data-index="2">回忆3</view>
+    <view class="nav_left_items {{curIndex == 3 ? 'active' : ''}}" bindtap="switchRightTab" data-index="3">回忆4</view>
+    <view class="nav_left_items {{curIndex == 4 ? 'active' : ''}}" bindtap="switchRightTab" data-index="4">回忆5</view>
+  </view>
+  <!--右侧栏-->
+  <scroll-view class="nav_right" scroll-y="true" style="height: 900rpx">
+      <view class="nav_right_items">
+        <!--判断应显示哪个图文-->
+        <view hidden="{{!(curIndex==0)}}">
+          <image id='1' src="{{image1}}" mode="widthFix" bindtap="pickImage"></image>
+          <textarea class='border'  disabled='{{!userIsOwner}}' auto-height name='text1' value='{{text1}}'></textarea>
+        </view>
+        <view hidden="{{!(curIndex==1)}}">
+          <image id='2' src="{{image2}}" mode="widthFix" bindtap="pickImage"></image>
+          <textarea class='border'  disabled='{{!userIsOwner}}' auto-height name='text2' value='{{text2}}'></textarea>
+        </view>
+        <view hidden="{{!(curIndex==2)}}">
+          <image id='3' src="{{image3}}" mode="widthFix" bindtap="pickImage"></image>
+          <textarea class='border'  disabled='{{!userIsOwner}}' auto-height name='text3' value='{{text3}}'></textarea>
+        </view>
+        <view hidden="{{!(curIndex==3)}}">
+          <image id='4' src="{{image4}}" mode="widthFix" bindtap="pickImage"></image>
+          <textarea class='border'  disabled='{{!userIsOwner}}' auto-height name='text4' value='{{text4}}'></textarea>
+        </view>
+        <view hidden="{{!(curIndex==4)}}">
+          <image id='5' src="{{image5}}" mode="widthFix" bindtap="pickImage"></image>
+          <textarea class='border' disabled='{{!userIsOwner}}' auto-height name='text5' value='{{text5}}'></textarea>
+        </view>
+      </view>
+    <!-- </block> -->
+  </scroll-view>
+</view>
+</template>
