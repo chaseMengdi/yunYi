@@ -3,21 +3,21 @@
 
 <view class='container'>
   <view class="login-icon">
-    <image class="login-img" src="../../imgs/img.png"></image>
+    <image class="login-img" src="https://i.loli.net/2018/12/02/5c03e9aaa30a7.png"></image>
   </view>
   <view class='login-from"'>
 
     <form bindsubmit='reg'>
 
       <view class='inputView'>
-        <image class="nameImage" src="../../imgs/name.png"></image>
+        <image class="nameImage" src="https://i.loli.net/2018/12/02/5c03ea7dea4d8.png"></image>
         <label class='loginLabRed'>*</label>
         <label class="loginLab">账号</label>
         <input class='inputText' name='userID' type='number' placeholder='请设置账号'></input>
       </view>
 
       <view class='inputView'>
-        <image class="keyImage" src="../../imgs/key.png"></image>
+        <image class="keyImage" src="https://i.loli.net/2018/12/02/5c03e99ce7928.png"></image>
         <label class='loginLabRed'>*</label>
         <label class="loginLab">密码</label>
         <input class='inputText' name='password0' type='text' placeholder='请设置密码'></input>
@@ -25,21 +25,21 @@
 
 
       <view class='inputView'>
-        <image class="keyImage" src="../../imgs/key.png"></image>
+        <image class="keyImage" src="https://i.loli.net/2018/12/02/5c03e99ce7928.png"></image>
         <label class='loginLabRed'>*</label>
         <label class="loginLab">密码</label>
         <input class='inputText' name='password' type='text' placeholder='请确认密码'></input>
       </view>
 
       <view class='inputView'>
-        <image class="nameImage" src="../../imgs/nickname.jpg"></image>
+        <image class="nameImage" src="https://i.loli.net/2018/12/02/5c03ea7e1b53a.jpg"></image>
         <label class='loginLabRed'>*</label>
         <label class="loginLab">昵称</label>
         <input class='inputText' name='name' type='text' placeholder='请设置你的昵称'></input>
       </view>
 
       <view class='inputView'>
-        <image class="nameImage1" src="../../imgs/home.png"></image>
+        <image class="nameImage1" src="https://i.loli.net/2018/12/02/5c03e99c33071.png"></image>
         <label class='loginLabRed'>*</label>
         <label class="loginLab">家乡</label>
         <input class='inputText' name='hometown' type='text' placeholder='请输入城市名'></input>

@@ -11,13 +11,13 @@ Page({
   data: {
     ownerID: null,
     pageContent: {
-      image1: '../../imgs/default.jpg' 
+      image1: 'https://i.loli.net/2018/12/02/5c03e99cd4b38.jpg'
     },//存放模板号，文字内容，图片路径
     owner: null,
     visitInfo: null,//存放评论总数，举报总数，点赞总数
     comment: null,//存放主页的评论列表
     likeFlag: 0,
-    likeUrl: "../../imgs/heart1.png",
+    likeUrl: "https://i.loli.net/2018/12/02/5c03e99c328e7.png",
     userIsOwner: false,//判断登录用户是否为主页主人
     thisCurIndex: 0,
     
@@ -179,7 +179,7 @@ Page({
     // likeflag为0则表示未点赞，先改界面数据
     if (this.data.likeFlag == 0) {
       this.setData({
-        likeUrl: "../../imgs/heart_button.png",
+        likeUrl: "https://i.loli.net/2018/12/02/5c03e99c32191.png",
         likeFlag: 1
       })
       // 点赞写入到数据库
@@ -198,7 +198,7 @@ Page({
     // 否则likeflag为1则已点赞，先改界面数据
     else {
       this.setData({
-        likeUrl: "../../imgs/heart1.png",
+        likeUrl: "https://i.loli.net/2018/12/02/5c03e99c328e7.png",
         likeFlag: 0
       })
       // 取消点赞写入到数据库

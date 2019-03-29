@@ -58,7 +58,7 @@
   
 <view>
  <image src="{{likeUrl}}" class="bt-img" bindtap="Like" style="{{style_img}}"></image>
- <image src="../../imgs/report.png" class="bt-img2" bindtap="report" style="{{style_img}}"></image>
+ <image src="https://i.loli.net/2018/12/02/5c03ea7f66898.png" class="bt-img2" bindtap="report" style="{{style_img}}"></image>
  <button hidden='{{!userIsOwner}}' type='primary' class="save_btn" size='mini'  form-type='submit'>保存</button>
   </view>
 </form>

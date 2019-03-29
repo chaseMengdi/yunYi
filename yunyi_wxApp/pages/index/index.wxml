@@ -2,7 +2,7 @@
 <view class="container">
 
   <view class="login-icon">
-    <image class="login-img" src="../../imgs/logImage.png"></image>
+    <image class="login-img" src="https://i.loli.net/2018/12/02/5c03e9e617c4a.png"></image>
   </view>
   <view class="login-from">
 
@@ -11,7 +11,7 @@
     <!--账号-->
 
     <view class="inputView">
-      <image class="nameImage" src="../../imgs/name.png"></image>
+      <image class="nameImage" src="https://i.loli.net/2018/12/02/5c03ea7dea4d8.png"></image>
       <label class="loginLab">账号</label>
       <input class="inputText" placeholder="请输入账号" name="userID"/>
     </view>
@@ -20,7 +20,7 @@
     <!--密码-->
 
     <view class="inputView">
-      <image class="keyImage" src="../../imgs/key.png"></image>
+      <image class="keyImage" src="https://i.loli.net/2018/12/02/5c03e99ce7928.png"></image>
       <label class="loginLab">密码</label>
       <input class="inputText" password="true" placeholder="请输入密码" name="password" />
     </view>

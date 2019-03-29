@@ -5,9 +5,9 @@ const app = getApp();
 Page({
   data: {
     background: [
-      { url: "../../imgs/model1.png" },
-      { url: "../../imgs/model2.png" },
-      { url: "../../imgs/model3.png" }
+      { url: "https://i.loli.net/2018/12/02/5c03ea880f7cc.png" },
+      { url: "https://i.loli.net/2018/12/02/5c03ea88e8f86.png" },
+      { url: "https://i.loli.net/2018/12/02/5c03ea89a9a0e.png" }
     ],
     indicatorDots: true,
     vertical: false,
