@@ -1,5 +1,4 @@
 <!--选择模板  -->
-<!--by唐桥保  -->
 <view class="container">
     <swiper bindchange='onSlideChangeEnd' indicator-dots="{{indicatorDots}}" style='width:95%;' autoplay="true" >
       <block wx:for="{{background}}">

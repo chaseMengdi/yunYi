@@ -1,5 +1,4 @@
 // pages/list/list.js
-// by陈曦
 
 const app = getApp()
 
@@ -45,7 +44,7 @@ Page({
     var that = this;
     wx.request({
       // 发起请求，返回所有用户数据
-      url: 'http://localhost:8080/wxDescListByLike',
+      url: app.globalData.reqUrl+'wxDescListByLike',
       method: 'GET',
       data: {},
       header: { 'Content-Type': 'application/json' },
@@ -113,7 +112,7 @@ Page({
     if(e.detail.value == true){
       wx.request({
         // 发起请求，返回老乡列表数据
-        url: 'http://localhost:8080/wxListByHometown',
+        url: app.globalData.reqUrl+'wxListByHometown',
         method:'POST',
         // data:  JSON.stringify(that.data.user),
         data:JSON.stringify(that.data.user.userID),

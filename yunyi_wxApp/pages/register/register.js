@@ -1,6 +1,6 @@
 // pages/register/register.js
-// by陈曦
 
+const app = getApp()
 Page({
 
   /**
@@ -92,7 +92,7 @@ Page({
     // 用户输入了有效信息
     else
       wx.request({
-        url: 'http://localhost:8080/wxRegister',
+        url: app.globalData.reqUrl+'wxRegister',
         method: 'POST',
         data: JSON.stringify(fmData),
         header: {

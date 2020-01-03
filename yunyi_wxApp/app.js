@@ -34,7 +34,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    reqUrl: 'http://203.195.156.107:8080/'
   },
   user:{}
 })

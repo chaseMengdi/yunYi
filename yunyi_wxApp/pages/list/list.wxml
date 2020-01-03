@@ -1,50 +1,43 @@
-<!--pages/list/list.wxml-->
-<!--by罗子璇  -->
-<view class='bg'  >
-<view class="trip" >
-  <view class="trip-top" >
-   <navigator class='h1' url='../homepage/homepage?ownerID={{user.userID}}'> 
-    <image class="trip-user" src="{{user.avatar}}"  bindtap=""></image>  
-   </navigator>   
-   
-    <view class="trip-info">
-       <view >
-   
-  <text>{{user.userName}}</text>
-   
-    <switch  class='mm' bindchange='homeOnly'><text style='font-family:"宋体"; '>看老乡</text></switch>
-      </view>
+<!-- pages/list/list.wxml -->
+<view class='bg'>
+  <view class="trip">
+    <view class="trip-top">
+      <navigator class='h1' url='../homepage/homepage?ownerID={{user.userID}}'>
+        <image class="trip-user" src="{{user.avatar}}" bindtap=""></image>
+      </navigator>
+      <view class="trip-info">
+        <view>
+          <text>{{user.userName}}</text>
+          <switch class='mm' bindchange='homeOnly'>
+            <text style='font-family:"宋体"; '>看老乡</text>
+          </switch>
         </view>
-         </view>
-          </view>
-          
-<view class="title">
+      </view>
+    </view>
+  </view>
+  <view class="title">
     <text id="font">热门主页</text>
   </view>
-
-<!--表头信息  -->
+  <!-- 表头信息 -->
   <view class='news'>
     <view class="new1">
-    <text class='column'>头像</text>
-    <text class='column'>用户名</text>
-    <text decode="{{true}}" class='column'> 家乡</text>
-    <text decode="{{true}}" class='column'> 点赞数</text>
+      <text class='column'>头像</text>
+      <text class='column'>用户名</text>
+      <text decode="{{true}}" class='column'>家乡</text>
+      <text decode="{{true}}" class='column'>点赞数</text>
     </view>
-  </view> 
-
-   <!--列表项  -->
-    <view class="news" >
-         <block wx:for='{{userlist}}'>   
-         <navigator  url='../homepage/homepage?ownerID={{item.user.userID}}'> 
-      <view class='new1'>
+  </view>
+  <!-- 列表项 -->
+  <view class="news">
+    <block wx:for='{{userlist}}'>
+      <navigator url='../homepage/homepage?ownerID={{item.user.userID}}'>
+        <view class='new1'>
           <image class='userAvatar' src='{{item.user.avatar}}'></image>
-          <text  decode="{{true}}"class='column'>&nbsp;&nbsp;&nbsp;{{item.user.name}}</text>
+          <text decode="{{true}}" class='column'>&nbsp;&nbsp;&nbsp;{{item.user.name}}</text>
           <text decode="{{true}}" class='column'>&nbsp;{{item.user.hometown}}</text>
           <text decode="{{true}}" class='column'>{{item.likeNum}}</text>
-       </view> 
-        </navigator>  
-         </block>   
-    </view>
-
+        </view>
+      </navigator>
+    </block>
+  </view>
 </view>
- 

@@ -1,4 +1,3 @@
-// by唐桥保
 var type = 1;
 const app = getApp();
 
@@ -30,7 +29,7 @@ Page({
         if (res.confirm) {
           var that = this;
           wx.request({
-            url: 'http://localhost:8080/setModel',
+            url: app.globalData.reqUrl+'setModel',
             method: 'POST',
             data: JSON.stringify({
               userID:app.user.userID,
@@ -39,7 +38,6 @@ Page({
             header: { 'Content-Type': 'application/json' }  
           });
           //通过缓存变量将模板号传给主页使得其刷新内容
-          // by张一帆
           var modelId = wx.getStorageSync('modelId');
           modelId = type;
           wx.setStorageSync('modelId', modelId);

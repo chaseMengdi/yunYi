@@ -1,5 +1,4 @@
       // pages/homepage/homepage.js
-// by陈曦
 const app = getApp()
 const util = require('../../utils/util.js')
 
@@ -43,7 +42,7 @@ Page({
     };
     wx.request({
       // 发起请求，读取该用户的主页信息
-      url: 'http://localhost:8080/wxGetUpgById',
+      url: app.globalData.reqUrl+'wxGetUpgById',
       data: JSON.stringify(e.ownerID),
       method: 'POST',
       success: function (res) {
@@ -140,7 +139,7 @@ Page({
     fmData.commenterName = app.user.userName;
     fmData.time = util.formatTime(new Date());
     wx.request({
-      url: 'http://localhost:8080/addComment',
+      url: app.globalData.reqUrl+'addComment',
       method: 'POST',
       data: JSON.stringify(fmData),
       header: { 'Content-Type': 'application/json' },
@@ -184,7 +183,7 @@ Page({
       })
       // 点赞写入到数据库
       wx.request({
-        url: 'http://localhost:8080/wxLikeById',
+        url: app.globalData.reqUrl+'wxLikeById',
         method: 'POST',
         data: JSON.stringify(that.data.ownerID),
         header: { 'Content-Type': 'application/json' },
@@ -203,7 +202,7 @@ Page({
       })
       // 取消点赞写入到数据库
       wx.request({
-        url: 'http://localhost:8080/wxDecLikeById',
+        url: app.globalData.reqUrl+'wxDecLikeById',
         method: 'POST',
         data: JSON.stringify(that.data.ownerID),
         header: { 'Content-Type': 'application/json' },
@@ -220,7 +219,7 @@ Page({
   , report: function () {
     var that = this;
     wx.request({
-      url: 'http://localhost:8080/wxReportById',
+      url: app.globalData.reqUrl+'wxReportById',
       method: 'POST',
       data: JSON.stringify(that.data.ownerID),
       header: { 'Content-Type': 'application/json' },
@@ -249,7 +248,6 @@ Page({
 
 
   // 接受用户图片 
-  // by刘博谦
   , pickImage: function (e) {
     var that = this
     //微信API选择图片
@@ -316,7 +314,7 @@ Page({
     this.data.pageContent.text4 = fmData.text4;
     this.data.pageContent.text5 = fmData.text5;
     wx.request({
-      url: 'http://localhost:8080/wxSaveContent',
+      url: app.globalData.reqUrl+'wxSaveContent',
       method: 'POST',
       data: JSON.stringify(this.data.pageContent),
       header: { 'Content-Type': 'application/json' },

@@ -1,5 +1,4 @@
 <!--pages/homepage/homepage.wxml-->
-<!--by陈曦  -->
 
 <!--导入模板布局  -->
 <import src='../model-1/model-1.wxml'/>

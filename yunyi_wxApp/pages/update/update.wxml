@@ -1,5 +1,4 @@
 <!--pages/changeIfo/changeIfo.wxml-->
-<!--by罗子璇  -->
 <view class="page centerPage-wrap" id="userCenterPage" data-router="userCenterPage">
   <view style="opacity:{{0.7}}" class="centerPage-user-info">
     <view class="js-change-cover">

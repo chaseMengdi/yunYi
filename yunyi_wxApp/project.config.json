@@ -15,6 +15,8 @@
 	"appid": "wx3c26f5c92a626a3f",
 	"projectname": "yunyi_wxApp",
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

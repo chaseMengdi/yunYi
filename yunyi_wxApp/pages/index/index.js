@@ -53,13 +53,19 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  //获取手机号
+  getPhoneNumber: function (e) {
+    console.log(`是否成功调用${e.detail.errMsg}`);
+    console.log(`加密算法的初始向量:${e.detail.iv}`);
+    console.log(`包括敏感数据在内的完整用户信息的加密数据:${e.detail.encryptedData}`);
+  } ,
 
 //登录功能
-,login:function(e){
+login:function(e){
   var that = this;
   wx.request({
-    url: 'http://localhost:8080/wxLogin',
+    url: app.globalData.reqUrl+'wxLogin',
     method: 'POST',
     data: JSON.stringify(e.detail.value),
     header: { 'Content-Type': 'application/json' },
@@ -67,7 +73,6 @@ Page({
       var theUser = res.data;
       console.log(res.data);
       //判断用户是否被封禁
-      // by刘博谦
       if (theUser.status == "stop") {
         wx.showModal({
           title: '登录异常',
@@ -99,3 +104,4 @@ Page({
 
 
 })
+        

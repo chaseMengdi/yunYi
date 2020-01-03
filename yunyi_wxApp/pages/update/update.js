@@ -83,7 +83,7 @@ Page({
         })
       } else {
         wx.request({
-          url: 'http://localhost:8080/wxUpdate',
+          url: app.globalData.reqUrl+'wxUpdate',
           method: 'POST',
           data: JSON.stringify(fmData),
           header: {

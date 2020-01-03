@@ -1,6 +1,5 @@
 <!--pages/model-1/model-1.wxml-->
 <!-- <scroll-view scroll-y="true" style="height: 675px"> -->
-<!--by唐桥保  -->
 <template name='t1'>
 
   <view class="trip1" background-attachment: fixed>

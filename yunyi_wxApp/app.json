@@ -13,5 +13,6 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "云忆",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
