@@ -2,9 +2,7 @@ package com.memory.yunyi.entity;
 
 import javax.persistence.*;
 
-/*
- * by陈曦
- */
+
 
 @Entity
 public class VisitInfo {

@@ -5,9 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-/*
- * by陈曦
- */
+
 
 public interface VisitInfoRepository extends JpaRepository<VisitInfo,Integer>{
     @Query("select a from VisitInfo a where a.user.hometown = ?1 order by a.likeNum  DESC ")

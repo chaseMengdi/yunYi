@@ -6,7 +6,7 @@ import com.memory.yunyi.entity.process;
 
 import javax.transaction.Transactional;
 
-//by罗子璇
+
 public interface processRepository extends JpaRepository<process,Integer> {
     @Query(value = "insert into process(id,adminid,reason_num,ttime,userid) value(?1,?2,?3,?4,?5)", nativeQuery = true)
     @Modifying

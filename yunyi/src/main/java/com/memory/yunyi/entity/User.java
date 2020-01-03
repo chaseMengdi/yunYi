@@ -3,9 +3,7 @@ package com.memory.yunyi.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-/*
-* by陈曦
-**/
+
 @Entity
 public class User {
     @Id

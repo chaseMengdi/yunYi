@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import javax.transaction.Transactional;
 
-//By唐桥保
+
 public interface LogRepository extends JpaRepository<Log,Integer > {
 
     @Query(value = "insert into log(adminid,admin_name,log_time) value(?1,?2,?3)", nativeQuery = true)

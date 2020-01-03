@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Date;
 import javax.transaction.Transactional;
 
-//by陈曦
+
 public interface userPageRepository extends JpaRepository<userPageContent,Integer> {
 
 

@@ -3,9 +3,7 @@ package com.memory.yunyi.service;
 import com.memory.yunyi.entity.User;
 import java.util.List;
 
-/*
- * by陈曦
- */
+
 
 public interface UserService {
 

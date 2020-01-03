@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/*
-* by陈曦
-* */
+
 @Controller
 @RequestMapping("/")
 public class userController {
@@ -26,6 +24,12 @@ public class userController {
         List<User> list = userService.getAllUser();
         model.addAttribute("users",list);
         return "userList";
+    }
+
+    //获取版本号
+    @GetMapping("/version")
+    public String getVersion(){
+        return "The current version 1.0.";
     }
 
 

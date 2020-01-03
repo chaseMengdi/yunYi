@@ -3,7 +3,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//by张一帆
+
 @Entity
 public class userPageContent {
     @Id

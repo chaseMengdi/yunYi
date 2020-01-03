@@ -8,9 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/*
- * by陈曦
- */
+
 
 public interface UserRepository  extends JpaRepository<User,Integer>{
     @Modifying

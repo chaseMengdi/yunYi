@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-//by罗子璇
+
 @Service
 public interface processService {
     List<process> getAll();

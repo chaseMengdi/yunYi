@@ -5,7 +5,7 @@ import com.memory.yunyi.entity.Log;
 import java.util.List;
 
 
-//by唐桥保
+
 @Service
 public interface LogService {
     List<Log> getAllLog();

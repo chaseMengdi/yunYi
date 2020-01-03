@@ -3,7 +3,7 @@ import com.memory.yunyi.entity.userPageContent;
 import java.util.List;
 import java.util.Optional;
 
-//by罗子璇
+
 public interface userPageService {
     List<userPageContent> getAllContent();
 

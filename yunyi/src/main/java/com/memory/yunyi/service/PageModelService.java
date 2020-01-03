@@ -5,7 +5,7 @@ import com.memory.yunyi.entity.PageModel;
 import java.util.List;
 import java.util.Optional;
 
-//by张一帆
+
 public interface PageModelService {
 
     List<PageModel> getAllPageModel();

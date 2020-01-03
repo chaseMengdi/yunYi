@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 
-//by张一帆
+
 @Controller
 @RequestMapping
 public class PageModelController {

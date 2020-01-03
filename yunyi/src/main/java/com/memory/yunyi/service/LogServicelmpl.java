@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-//by唐桥保
+
 @Service
 public class LogServicelmpl implements LogService{
 
