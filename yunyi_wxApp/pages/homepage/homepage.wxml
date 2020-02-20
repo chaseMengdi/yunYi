@@ -7,12 +7,12 @@
 
 <view class="trip">
   <view class="trip-top">
-
+  <view>
     <image class="trip-user" src="{{owner.avatar}}" bindtap="goUpdate"></image>
+    <mp-icon id="settingIcon" icon="setting" size="25"></mp-icon>
+  </view>
     <view class="trip-info">
       <view class="h1">{{owner.name}}</view>
-
-
       <view class="detail">
         <text>{{visitInfo.likeNum}}次喜欢</text>
         <text>{{visitInfo.commentNum}}条评论</text>
