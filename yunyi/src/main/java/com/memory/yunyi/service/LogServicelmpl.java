@@ -7,24 +7,23 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
-public class LogServicelmpl implements LogService{
+public class LogServicelmpl implements LogService {
 
     @Autowired
     private LogRepository logRepository;
 
     @Override
-    public List<Log> getAllLog(){
-        Sort sort = new Sort(Sort.Direction.DESC,"logID");
+    public List<Log> getAllLog() {
+        Sort sort = new Sort(Sort.Direction.DESC, "logID");
         return logRepository.findAll(sort);
     }
 
     @Override
-    public void addLog(Log log){
-        logRepository.add(log.getAdminID(),log.getAdminName(),log.getLogTime());
+    public void addLog(Log log) {
+        logRepository.add(log.getAdminID(), log.getAdminName(), log.getLogTime());
     }
 
     @Override

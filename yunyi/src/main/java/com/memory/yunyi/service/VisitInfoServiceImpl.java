@@ -1,16 +1,16 @@
 package com.memory.yunyi.service;
 
-import java.util.List;
 import com.memory.yunyi.entity.VisitInfo;
 import com.memory.yunyi.repository.VisitInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 
 @Service
-public class VisitInfoServiceImpl implements VisitInfoService{
+public class VisitInfoServiceImpl implements VisitInfoService {
 
     @Autowired
     private VisitInfoRepository visitInfoRepository;
@@ -19,7 +19,7 @@ public class VisitInfoServiceImpl implements VisitInfoService{
     @Override
     public List<VisitInfo> DescByLike() {
         Sort sort = new Sort(Sort.Direction.DESC, "likeNum");
-        return  visitInfoRepository.findAll(sort);
+        return visitInfoRepository.findAll(sort);
 //        return  visitInfoRepository.findAll();
     }
 
@@ -36,35 +36,35 @@ public class VisitInfoServiceImpl implements VisitInfoService{
     }
 
     @Override
-    public VisitInfo findById(Integer id) {
-        return visitInfoRepository.findById(id).get();
+    public VisitInfo findByOpenId(String id) {
+        return visitInfoRepository.findByOpenId(id);
     }
 
     @Override
-    public VisitInfo incLike(Integer id) {
-        VisitInfo tmp = visitInfoRepository.findById(id).get();
-        tmp.setLikeNum(tmp.getLikeNum()+1);
+    public VisitInfo incLike(String id) {
+        VisitInfo tmp = visitInfoRepository.findByOpenId(id);
+        tmp.setLikeNum(tmp.getLikeNum() + 1);
         return visitInfoRepository.save(tmp);
     }
 
     @Override
-    public VisitInfo decLike(Integer id) {
-        VisitInfo tmp = visitInfoRepository.findById(id).get();
-        tmp.setLikeNum(tmp.getLikeNum()-1);
+    public VisitInfo decLike(String id) {
+        VisitInfo tmp = visitInfoRepository.findByOpenId(id);
+        tmp.setLikeNum(tmp.getLikeNum() - 1);
         return visitInfoRepository.save(tmp);
     }
 
     @Override
-    public VisitInfo incReport(Integer id) {
-        VisitInfo tmp = visitInfoRepository.findById(id).get();
-        tmp.setReportNum(tmp.getReportNum()+1);
+    public VisitInfo incReport(String id) {
+        VisitInfo tmp = visitInfoRepository.findByOpenId(id);
+        tmp.setReportNum(tmp.getReportNum() + 1);
         return visitInfoRepository.save(tmp);
     }
 
     @Override
-    public VisitInfo incComment(Integer id) {
-        VisitInfo tmp = visitInfoRepository.findById(id).get();
-        tmp.setCommentNum(tmp.getCommentNum()+1);
+    public VisitInfo incComment(String openId) {
+        VisitInfo tmp = visitInfoRepository.findByOpenId(openId);
+        tmp.setCommentNum(tmp.getCommentNum() + 1);
         return visitInfoRepository.save(tmp);
     }
 
