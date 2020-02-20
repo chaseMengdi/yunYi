@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <title>ECharts</title>-->
+<!--    &lt;!&ndash; 引入 echarts.js &ndash;&gt;-->
+<!--    <script src="../static/lib/echarts/echarts.min.js" th:src="@{/lib/echarts/echarts.min.js}"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash; 为ECharts准备一个具备大小（宽高）的Dom &ndash;&gt;-->
+<!--<div id="main" style="width: 600px;height:400px;">-->
+<!--    R U ok?-->
+<!--</div>-->
+<!--<script type="text/javascript" >-->
+
+<!--    function showChart(){-->
+<!--        // 基于准备好的dom，初始化echarts实例-->
+<!--        var myChart = echarts.init(document.getElementById('main'));-->
+
+<!--        // 指定图表的配置项和数据-->
+<!--        var option = {-->
+<!--            title: {-->
+<!--                text: 'ECharts 入门示例'-->
+<!--            },-->
+<!--            tooltip: {},-->
+<!--            legend: {-->
+<!--                data:['销量']-->
+<!--            },-->
+<!--            xAxis: {-->
+<!--                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]-->
+<!--            },-->
+<!--            yAxis: {},-->
+<!--            series: [{-->
+<!--                name: '销量',-->
+<!--                type: 'bar',-->
+<!--                data: [5, 20, 36, 10, 10, 20]-->
+<!--            }]-->
+<!--        };-->
+<!--        // 使用刚指定的配置项和数据显示图表。-->
+<!--        myChart.setOption(option);-->
+<!--    }-->
+<!--    showChart();-->
+
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+    <script src="../static/lib/echarts/echarts.js" th:src="@{/lib/echarts/echarts.js}"></script>
+    <script src="../static/lib/echarts/echarts.min.js" th:src="@{/lib/echarts/echarts.min.js}"></script>
+    <script src="../static/lib/jquery/1.9.1/jquery.js" th:src="@{/lib/jquery/1.9.1/jquery.js}"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{static/h-ui/css/H-ui.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/css/H-ui.admin.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{lib/Hui-iconfont/1.0.8/iconfont.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/skin/default/skin.css}" id="skin" />
+    <link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/css/style.css}" />
+    [if IE 6]>
+    <script type="text/javascript" th:src="@{lib/DD_belatedPNG_0.0.8a-min.js}" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>图表展示</title>
+</head>
+<body>
+<header class="navbar-wrapper">
+    <div class="navbar navbar-fixed-top" th:include="head::myheader">
+
+    </div>
+</header>
+
+<aside class="Hui-aside">
+    <div class="menu_dropdown bk_2" th:include="nav::menu"></div>
+</aside>
+
+<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
+<section class="Hui-article-box">
+<!--这里开始展示图表    -->
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="test" style="width: 800px;height:450px;">
+        Fuck you.
+    </div>
+
+    <script type="text/javascript">
+        function showChart(){
+            $(document).ready(function(){
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('test'));
+                //数据加载完之前先显示一段简单的loading动画
+                myChart.showLoading();
+                var names=[];    //横坐标数组（实际用来盛放X轴坐标值）
+                var values=[];    //纵坐标数组（实际用来盛放Y坐标值）
+                $.ajax({
+                    type : "POST",
+                    async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+                    url : "/EcharsShow",    //请求发送到dataActiont处
+                    data : {},
+                    dataType : "json",        //返回数据形式为json
+                    success : function(result) {
+                        //请求成功时执行该函数内容，result即为服务器返回的json对象
+                        if (result) {
+                            for(var i=0;i<result.length;i++){
+                                names.push(result[i].name);
+                                values.push(result[i].num);
+                                //alert(result[i].name);
+                            }
+                            myChart.hideLoading();    //隐藏加载动画
+                            myChart.setOption({        //加载数据图表
+                                tooltip: {},
+                                legend: {
+                                    data:['數量']
+                                },
+                                xAxis: {
+                                    data: names
+                                },
+                                yAxis: {
+                                    type: 'value'
+                                },
+                                series: [{
+                                    // 根据名字对应到相应的系列
+                                    name: '數量',//薪资 series not exists. Legend data should be same with series name or data name.
+                                    type: 'bar',
+                                    data: values
+                                }]
+                            });
+                        }
+                    },
+                    error : function(errorMsg) {
+                        //请求失败时执行该函数
+                        alert("图表请求数据失败!");
+                        myChart.hideLoading();
+                    }
+                });//end ajax
+            });
+        }
+
+        showChart();
+
+    </script>
+
+
+</section>
+
+</section>
+
+
+
+</body>
+
+</html>
