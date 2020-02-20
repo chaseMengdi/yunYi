@@ -1,11 +1,18 @@
 //app.js
 App({
-  onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+  globalData: {
+    userInfo: null,
+    reqUrl: 'http://203.195.156.107:8080/'
+  },
+  user: {
+    openid: null,
+    province: null,
+    city: null,
+    nickName: null,
+    avatarUrl: null
+  },
 
+  onLaunch: function () {
     // 登录
     wx.login({
       success: res => {
@@ -32,10 +39,5 @@ App({
         }
       }
     })
-  },
-  globalData: {
-    userInfo: null,
-    reqUrl: 'http://203.195.156.107:8080/'
-  },
-  user:{}
+  }
 })

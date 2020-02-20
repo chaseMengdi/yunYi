@@ -1,9 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
     "pages/list/list",
-    "pages/register/register",
     "pages/homepage/homepage",
     "pages/choose/choose",
     "pages/update/update"
@@ -13,6 +11,18 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "云忆",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/list/list",
+        "text": "广场"
+      },
+      {
+        "pagePath": "pages/homepage/homepage",
+        "text": "个人"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

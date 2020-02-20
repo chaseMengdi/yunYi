@@ -2,9 +2,7 @@
 <view class='bg'>
   <view class="trip">
     <view class="trip-top">
-      <navigator class='h1' url='../homepage/homepage?ownerID={{user.userID}}'>
-        <image class="trip-user" src="{{user.avatar}}" bindtap=""></image>
-      </navigator>
+      <image class="trip-user" src="{{user.avatar}}" bindtap=""></image>
       <view class="trip-info">
         <view>
           <text>{{user.userName}}</text>
