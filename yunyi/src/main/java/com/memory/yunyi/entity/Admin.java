@@ -10,15 +10,15 @@ public class Admin {
 
     @Id
     @GeneratedValue
-    private Integer  adminID;
-    private String  adminName;
-    private String  password;
+    private Integer adminID;
+    private String adminName;
+    private String password;
 
 
     public Admin() {
     }
 
-    public Integer  getAdminID() {
+    public Integer getAdminID() {
         return adminID;
     }
 

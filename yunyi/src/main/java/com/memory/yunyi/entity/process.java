@@ -13,13 +13,21 @@ public class process {
     private Integer adminID;
     private String reasonNum;
     private String ttime;
-    private Integer userID;
+    private String userID;
 
-    public process(Integer ID,Integer adminID, String reasonNum, String ttime, Integer userID) {
-        this.ID = ID;
+    public process(Integer adminID, String reasonNum, String ttime, String userID) {
         this.adminID = adminID;
         this.reasonNum = reasonNum;
         this.ttime = ttime;
+        this.userID = userID;
+    }
+
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 
@@ -55,13 +63,6 @@ public class process {
         this.ttime = ttime;
     }
 
-    public Integer getUserID() {
-        return userID;
-    }
-
-    public void setUserID(Integer userID) {
-        this.userID = userID;
-    }
 
     public process() {
     }

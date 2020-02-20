@@ -63,40 +63,50 @@ Page({
 
 //登录功能
 login:function(e){
-  var that = this;
-  wx.request({
-    url: app.globalData.reqUrl+'wxLogin',
-    method: 'POST',
-    data: JSON.stringify(e.detail.value),
-    header: { 'Content-Type': 'application/json' },
+  // var that = this;
+  // wx.request({
+  //   url: app.globalData.reqUrl+'wxLogin',
+  //   method: 'POST',
+  //   data: JSON.stringify(e.detail.value),
+  //   header: { 'Content-Type': 'application/json' },
+  //   success: function (res) {
+  //     var theUser = res.data;
+  //     console.log(res.data);
+  //     //判断用户是否被封禁
+  //     if (theUser.status == "stop") {
+  //       wx.showModal({
+  //         title: '登录异常',
+  //         content: '您的账户被封禁或者不存在，请联系管理员！',
+  //         showCancel: "false"
+  //       })
+  //     }
+  //     else if (theUser == ''){
+  //       wx.showModal({
+  //         title: '登录失败！',
+  //         content: '账号或密码输入有误',
+  //         showCancel: "false"
+  //       })
+  //     }
+  //     else if(theUser!= null&&theUser!=''){
+  //       app.user.userID = theUser.userID;
+  //       app.user.password = theUser.password;
+  //       app.user.userName = theUser.name;
+  //       app.user.hometown = theUser.hometown;
+  //       app.user.avatar = theUser.avatar;
+  //       // app.user = theUser;
+  //       wx.navigateTo({
+  //         url: "../list/list",
+  //       })
+  //     }
+  //   }
+  // })
+  wx.login({
     success: function (res) {
-      var theUser = res.data;
-      console.log(res.data);
-      //判断用户是否被封禁
-      if (theUser.status == "stop") {
-        wx.showModal({
-          title: '登录异常',
-          content: '您的账户被封禁或者不存在，请联系管理员！',
-          showCancel: "false"
-        })
+      if(res.code){
+        console.log(res.code);
       }
-      else if (theUser == ''){
-        wx.showModal({
-          title: '登录失败！',
-          content: '账号或密码输入有误',
-          showCancel: "false"
-        })
-      }
-      else if(theUser!= null&&theUser!=''){
-        app.user.userID = theUser.userID;
-        app.user.password = theUser.password;
-        app.user.userName = theUser.name;
-        app.user.hometown = theUser.hometown;
-        app.user.avatar = theUser.avatar;
-        // app.user = theUser;
-        wx.navigateTo({
-          url: "../list/list",
-        })
+      else{
+        console.log("获取code错误。");
       }
     }
   })

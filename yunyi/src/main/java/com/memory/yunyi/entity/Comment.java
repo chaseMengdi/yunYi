@@ -3,7 +3,6 @@ package com.memory.yunyi.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -12,17 +11,19 @@ public class Comment {
     @Id
     @GeneratedValue
     private Integer cmtID;
-    private Integer commenterID;
+    private String commenterID;
     private String commenterName;
-    private Integer ownerID;
-    private String  text;
-    private String  time;
+    private String ownerID;
+    private String text;
+    private String time;
 
-    public  Comment() {
+    public Comment() {
+        super();
     }
-    public Comment(Integer cmtID, Integer commenterID, Integer ownerID, String text, String time) {
-        this.cmtID = cmtID;
+
+    public Comment(String commenterID, String commenterName, String ownerID, String text, String time) {
         this.commenterID = commenterID;
+        this.commenterName = commenterName;
         this.ownerID = ownerID;
         this.text = text;
         this.time = time;
@@ -36,11 +37,11 @@ public class Comment {
         this.cmtID = cmtID;
     }
 
-    public Integer getCommenterID() {
+    public String getCommenterID() {
         return commenterID;
     }
 
-    public void setCommenterID(Integer commenterID) {
+    public void setCommenterID(String commenterID) {
         this.commenterID = commenterID;
     }
 
@@ -52,11 +53,11 @@ public class Comment {
         this.commenterName = commenterName;
     }
 
-    public Integer getOwnerID() {
+    public String getOwnerID() {
         return ownerID;
     }
 
-    public void setOwnerID(Integer ownerID) {
+    public void setOwnerID(String ownerID) {
         this.ownerID = ownerID;
     }
 

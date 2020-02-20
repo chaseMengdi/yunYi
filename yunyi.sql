@@ -39,8 +39,8 @@ INSERT INTO `admin` VALUES ('1', 'hwx', '111');
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `cmtid` int(11) NOT NULL AUTO_INCREMENT,
-  `commenterid` int(11) DEFAULT NULL,
-  `ownerid` int(11) DEFAULT NULL,
+  `commenterid` varchar(255) DEFAULT NULL,
+  `ownerid` varchar(255) DEFAULT NULL,
   `text` varchar(255) DEFAULT NULL,
   `time` varchar(255) DEFAULT NULL,
   `commenter_name` varchar(255) DEFAULT NULL,
@@ -169,7 +169,7 @@ CREATE TABLE `process` (
   `adminid` int(11) DEFAULT NULL,
   `reason_num` varchar(255) DEFAULT NULL,
   `ttime` varchar(255) DEFAULT NULL,
-  `userid` int(11) DEFAULT NULL,
+  `userid` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -184,33 +184,32 @@ INSERT INTO `process` VALUES ('29', '123', '辱骂他人', '2018-7-11-17:4:58', 
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `userid` int(11) NOT NULL,
-  `hometown` varchar(255) DEFAULT NULL,
-  `live_place` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `sex` varchar(255) DEFAULT NULL,
+  `open_id` varchar(255) NOT NULL,
+  `province` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `nick_name` varchar(255) DEFAULT NULL,
+  `gender` int(1) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
-  `avatar` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`userid`)
+  `avatar_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`open_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('445637026', '武汉', '武汉', 'one piece', '123456lzx', '男', 'normal', 'https://i.loli.net/2018/07/09/5b430b46b3a63.jpg');
-INSERT INTO `user` VALUES ('274736996', '武汉', '武汉', 'c.x.', '123456cx', '男', 'normal', 'https://i.loli.net/2018/07/09/5b4306db1389a.jpg');
-INSERT INTO `user` VALUES ('401129798', '襄阳', '武汉', '胡火锅', '123456hwx', '男', 'normal', 'https://i.loli.net/2018/07/09/5b4308d3acf3b.jpg');
-INSERT INTO `user` VALUES ('1365480990', '武汉', '武汉', '长风', '123456tqb', '男', 'normal', 'https://i.loli.net/2018/07/09/5b430f7a2f429.jpg');
-INSERT INTO `user` VALUES ('4780494', '潜江', '武汉', '--！', '123456zyf', '男', 'normal', 'https://i.loli.net/2018/07/09/5b4312bea28d1.jpg');
-INSERT INTO `user` VALUES ('1018952520', '保定', '武汉', '爱国者~', '123456lbq', '男', 'normal', 'https://i.loli.net/2018/07/09/5b434bd66b939.jpg');
+INSERT INTO `user` VALUES ('445637026', '湖北', '武汉', 'one piece',  '1', 'normal', 'https://i.loli.net/2018/07/09/5b430b46b3a63.jpg');
+INSERT INTO `user` VALUES ('274736996', '湖北', '武汉', 'c.x.',  '1', 'normal', 'https://i.loli.net/2018/07/09/5b4306db1389a.jpg');
+INSERT INTO `user` VALUES ('401129798', '湖北', '襄阳', '胡火锅', '1', 'normal', 'https://i.loli.net/2018/07/09/5b4308d3acf3b.jpg');
+INSERT INTO `user` VALUES ('1365480990', '湖北', '武汉', '长风',  '1', 'normal', 'https://i.loli.net/2018/07/09/5b430f7a2f429.jpg');
+INSERT INTO `user` VALUES ('4780494', '湖北', '潜江', '--！',  '1', 'normal', 'https://i.loli.net/2018/07/09/5b4312bea28d1.jpg');
+INSERT INTO `user` VALUES ('1018952520', '河北', '保定', '爱国者~',  '1', 'normal', 'https://i.loli.net/2018/07/09/5b434bd66b939.jpg');
 
 -- ----------------------------
 -- Table structure for `user_page_content`
 -- ----------------------------
 DROP TABLE IF EXISTS `user_page_content`;
 CREATE TABLE `user_page_content` (
-  `userid` int(11) NOT NULL,
+  `userid` varchar(255) NOT NULL,
   `image1` varchar(255) DEFAULT NULL,
   `image2` varchar(255) DEFAULT NULL,
   `image3` varchar(255) DEFAULT NULL,
@@ -240,22 +239,23 @@ INSERT INTO `user_page_content` VALUES ('1018952520', 'https://i.loli.net/2018/0
 -- ----------------------------
 DROP TABLE IF EXISTS `visit_info`;
 CREATE TABLE `visit_info` (
-  `userid` int(11) unsigned zerofill NOT NULL,
+  `userid` varchar(255) NOT NULL,
   `like_num` int(11) unsigned zerofill DEFAULT NULL,
   `report_num` int(11) unsigned zerofill DEFAULT NULL,
   `visit_num` int(11) unsigned zerofill DEFAULT NULL,
-  `user_userid` int(11) unsigned zerofill DEFAULT NULL,
+  `user_open_id` varchar(255) DEFAULT NULL,
   `comment_num` int(11) unsigned zerofill DEFAULT NULL,
   PRIMARY KEY (`userid`),
-  KEY `FKp70pq5hf6a2vl7cmq9pe1a1mb` (`user_userid`)
+  KEY `FKivcerrflynuopsmeucykyd6li` (`user_open_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of visit_info
 -- ----------------------------
-INSERT INTO `visit_info` VALUES ('00401129798', '00000000006', '00000000009', '00000000000', '00401129798', '00000000008');
-INSERT INTO `visit_info` VALUES ('00274736996', '00000000005', '00000000000', '00000000000', '00274736996', '00000000002');
-INSERT INTO `visit_info` VALUES ('00445637026', '00000000002', '00000000000', '00000000000', '00445637026', '00000000003');
-INSERT INTO `visit_info` VALUES ('01365480990', '00000000002', '00000000000', '00000000000', '01365480990', '00000000001');
-INSERT INTO `visit_info` VALUES ('00004780494', '00000000004', '00000000001', '00000000000', '00004780494', '00000000002');
-INSERT INTO `visit_info` VALUES ('01018952520', '00000000000', '00000000000', '00000000000', '01018952520', '00000000000');
+INSERT INTO `visit_info` VALUES ('401129798', '00000000006', '00000000009', '00000000000', '401129798', '00000000008');
+INSERT INTO `visit_info` VALUES ('274736996', '00000000005', '00000000000', '00000000000', '274736996', '00000000002');
+INSERT INTO `visit_info` VALUES ('445637026', '00000000002', '00000000000', '00000000000', '445637026', '00000000003');
+INSERT INTO `visit_info` VALUES ('1365480990', '00000000002', '00000000000', '00000000000', '1365480990', '00000000001');
+INSERT INTO `visit_info` VALUES ('4780494', '00000000004', '00000000001', '00000000000', '4780494', '00000000002');
+INSERT INTO `visit_info` VALUES ('1018952520', '00000000000', '00000000000', '00000000000', '1018952520', '00000000000');
+INSERT INTO `visit_info` VALUES ('oJy764pnMqBJ98hE0aWU_Rz5UYYw', '00000000000', '00000000000', '00000000000', 'oJy764pnMqBJ98hE0aWU_Rz5UYYw', '00000000000');

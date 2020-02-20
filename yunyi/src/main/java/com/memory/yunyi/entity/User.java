@@ -1,89 +1,80 @@
 package com.memory.yunyi.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class User {
     @Id
-    private Integer userID;
-    private String name;
-    private String hometown;
-    private String livePlace;
-    private String password;
-    private String sex;
+    private String openId;
+    private String nickName;
+    private Integer gender;
+    private String avatarUrl;
+    private String province;
+    private String city;
     private String status = "normal";
-    private String avatar ;
 
 
-    public User(){
-
-    }
-    public User(Integer userID,String name, String hometown,String livePlace, String password, String sex, String status) {
-        this.userID = userID;
-        this.name = name;
-        this.hometown = hometown;
-        this.livePlace = livePlace;
-        this.password = password;
-        this.sex = sex;
-        this.status = status;
+    public User() {
+        super();
     }
 
-    public Integer getUserID() {
-        return userID;
+    public User(String openId, String nickName, Integer gender, String avatarUrl, String province, String city) {
+        this.openId = openId;
+        this.nickName = nickName;
+        this.gender = gender;
+        this.avatarUrl = avatarUrl;
+        this.province = province;
+        this.city = city;
+        this.status = "normal";
     }
 
-    public void setUserID(Integer userID) {
-        this.userID = userID;
+    public String getOpenId() {
+        return openId;
     }
 
-    public String getName() {
-        return name;
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getNickName() {
+        return nickName;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public Integer getGender() {
+        return gender;
     }
 
-    public String getHometown() {
-        return hometown;
+    public void setGender(Integer gender) {
+        this.gender = gender;
     }
 
-    public void setHometown(String hometown) {
-        this.hometown = hometown;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public String getLivePlace() {
-        return livePlace;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
-    public void setLivePlace(String livePlace) {
-        this.livePlace = livePlace;
+    public String getProvince() {
+        return province;
     }
 
-    public String getPassword() {
-        return password;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getCity() {
+        return city;
     }
 
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getStatus() {
@@ -92,5 +83,18 @@ public class User {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "openId='" + openId + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", gender=" + gender +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

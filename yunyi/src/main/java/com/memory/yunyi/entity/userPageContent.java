@@ -1,13 +1,13 @@
 package com.memory.yunyi.entity;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
 @Entity
 public class userPageContent {
     @Id
-    private Integer userID;
+    private String userID;
     private String text1;
     private String text2;
     private String text3;
@@ -54,11 +54,11 @@ public class userPageContent {
         this.image5 = image5;
     }
 
-    public Integer getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(Integer userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 
@@ -122,7 +122,7 @@ public class userPageContent {
 
     }
 
-    public userPageContent(Integer userID,String text1, String text2, String text3,String text4, String text5, String image1, String image2, String image3,String image4, String image5, Integer modelID) {
+    public userPageContent(String userID, String text1, String text2, String text3, String text4, String text5, String image1, String image2, String image3, String image4, String image5, Integer modelID) {
         this.userID = userID;
         this.text1 = text1;
         this.text2 = text2;
