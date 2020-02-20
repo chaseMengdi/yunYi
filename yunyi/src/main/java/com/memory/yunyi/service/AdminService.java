@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface AdminService {
-   Admin adminLoginJudge(Integer adminID, String password);
+    Admin adminLoginJudge(Integer adminID, String password);
 
-   String findAdminNameByID(Integer adminID);
+    String findAdminNameByID(Integer adminID);
 }

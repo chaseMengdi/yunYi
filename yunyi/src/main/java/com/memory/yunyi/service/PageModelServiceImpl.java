@@ -20,13 +20,9 @@ public class PageModelServiceImpl implements PageModelService {
         return pageModelRepository.findAll();
     }
 
-   public boolean pageModelExists(PageModel pageModel){
-        if(pageModelRepository.existsById(pageModel.getPageModelID())){
-            return true;
-        }else{
-            return false;
-        }
-   }
+    public boolean pageModelExists(PageModel pageModel) {
+        return pageModelRepository.existsById(pageModel.getPageModelID());
+    }
 
     @Override
     public PageModel addPageModel(PageModel pageModel) {
@@ -39,20 +35,22 @@ public class PageModelServiceImpl implements PageModelService {
     }
 
     @Override
-    public void deletePageModel(Integer pageModelID) {pageModelRepository.deleteById(pageModelID);}
+    public void deletePageModel(Integer pageModelID) {
+        pageModelRepository.deleteById(pageModelID);
+    }
 
 
     @Override
     public PageModel inc(Integer id) {
         PageModel tmp = pageModelRepository.findById(id).get();
-        tmp.setUsageAmount(tmp.getUsageAmount()+1);
+        tmp.setUsageAmount(tmp.getUsageAmount() + 1);
         return pageModelRepository.save(tmp);
     }
 
     @Override
     public PageModel dec(Integer id) {
         PageModel tmp = pageModelRepository.findById(id).get();
-        tmp.setUsageAmount(tmp.getUsageAmount()-1);
+        tmp.setUsageAmount(tmp.getUsageAmount() - 1);
         return pageModelRepository.save(tmp);
     }
 }

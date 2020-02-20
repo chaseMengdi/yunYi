@@ -19,5 +19,6 @@ public interface PageModelService {
     Optional<PageModel> getPageModelByID(Integer pageModelID);
 
     PageModel inc(Integer id);
+
     PageModel dec(Integer id);
 }

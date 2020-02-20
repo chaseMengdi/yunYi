@@ -1,9 +1,46 @@
 spring:
     datasource:
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://203.195.156.107:3306/yunYi
+        url: jdbc:mysql://203.195.156.107:3306/yunYi?useSSL=false
         username: boqianliu
         password: boqianliu
+        type: com.alibaba.druid.pool.DruidDataSource
+      #   数据源其他配置
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+      #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+        filters: stat,wall,log4j
+        maxPoolPreparedStatementPerConnectionSize: 20
+        useGlobalDataSourceStat: true
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+        druid:
+          # druid页面配置
+          stat-view-servlet:
+            # 登录用户名 密码
+            login-username: admin
+            login-password: admin
+            # 页面所在路径
+            url-pattern: /druid/*
+            # 白名单，为空则允许所有
+            allow: ""
+            # 黑名单
+            #deny: 192.168.1.20
+          #druid过滤规则
+          web-stat-filter:
+            url-pattern: /*
+            # 不过滤静态资源
+            exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+    thymeleaf:
+      cache: false
     jpa:
         hibernate:
             ddl-auto: update

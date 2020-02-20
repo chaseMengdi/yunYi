@@ -1,22 +1,24 @@
 package com.memory.yunyi.entity;
 
-import javax.persistence.*;
-
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
 @Entity
 public class VisitInfo {
     @Id
-    Integer userID;
+    String userID;
     Integer likeNum;
     Integer visitNum;
     Integer commentNum;
     Integer reportNum;
 
-    public VisitInfo(){
+    public VisitInfo() {
 
     }
-    public VisitInfo(Integer userID,Integer likeNum, Integer visitNum, Integer commentNum,Integer reportNum) {
+
+    public VisitInfo(String userID, Integer likeNum, Integer visitNum, Integer commentNum, Integer reportNum) {
         this.userID = userID;
         this.likeNum = likeNum;
         this.visitNum = visitNum;
@@ -25,7 +27,7 @@ public class VisitInfo {
     }
 
     @OneToOne
-    private  User user;
+    private User user;
 
     public User getUser() {
         return user;
@@ -35,11 +37,11 @@ public class VisitInfo {
         this.user = user;
     }
 
-    public Integer getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(Integer userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 
@@ -73,5 +75,17 @@ public class VisitInfo {
 
     public void setCommentNum(Integer commentNum) {
         this.commentNum = commentNum;
+    }
+
+    @Override
+    public String toString() {
+        return "VisitInfo{" +
+                "userID='" + userID + '\'' +
+                ", likeNum=" + likeNum +
+                ", visitNum=" + visitNum +
+                ", commentNum=" + commentNum +
+                ", reportNum=" + reportNum +
+                ", user=" + user.toString() +
+                '}';
     }
 }

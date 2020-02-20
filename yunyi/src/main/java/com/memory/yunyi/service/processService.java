@@ -12,7 +12,9 @@ public interface processService {
     List<process> getAll();
 
     Optional<process> findById(Integer id);
+
     void delete(Integer id);
+
     process add(process process);
 
     void up(process process);

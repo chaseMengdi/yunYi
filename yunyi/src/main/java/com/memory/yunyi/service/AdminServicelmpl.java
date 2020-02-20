@@ -6,22 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-
 @Service
-public class AdminServicelmpl implements AdminService{
+public class AdminServicelmpl implements AdminService {
 
     @Autowired
     private AdminRepository adminRepository;
 
     @Override
-    public Admin adminLoginJudge(Integer adminID,String password){
-        Admin admin=adminRepository.findByIDAndPassword(adminID, password);
+    public Admin adminLoginJudge(Integer adminID, String password) {
+        Admin admin = adminRepository.findByIDAndPassword(adminID, password);
         return admin;
     }
 
     @Override
-    public String findAdminNameByID(Integer adminID){
-         Admin admin=adminRepository.findByID(adminID);
-         return admin.getAdminName();
+    public String findAdminNameByID(Integer adminID) {
+        Admin admin = adminRepository.findByID(adminID);
+        return admin.getAdminName();
     }
 }

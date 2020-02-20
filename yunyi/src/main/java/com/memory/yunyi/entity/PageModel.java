@@ -13,7 +13,7 @@ public class PageModel {
     private String pictureLink;
     private Integer usageAmount;
 
-    public PageModel(){
+    public PageModel() {
 
     }
 

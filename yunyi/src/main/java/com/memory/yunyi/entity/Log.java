@@ -11,14 +11,14 @@ public class Log {
     @Id
     @GeneratedValue
     private Integer logID;
-    private Integer  adminID;
-    private String  adminName;
-    private String  logTime;
+    private Integer adminID;
+    private String adminName;
+    private String logTime;
 
     public Log() {
     }
 
-    public Integer  getAdminID() {
+    public Integer getAdminID() {
         return adminID;
     }
 
@@ -42,7 +42,7 @@ public class Log {
         this.logTime = logTime;
     }
 
-    public Log(Integer logID,Integer adminID, String adminName, String logTime) {
+    public Log(Integer logID, Integer adminID, String adminName, String logTime) {
         this.logID = logID;
         this.adminID = adminID;
         this.adminName = adminName;
