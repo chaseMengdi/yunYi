@@ -5,7 +5,7 @@
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <title>云忆后台管理系统</title>
-    <link rel="stylesheet" type="text/css" th:href="@{static/h-ui.admin/css/style2.0.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/h-ui.admin/css/style2.0.css}">
     <style type="text/css">
         ul li{font-size: 30px;color:#2ec0f6;}
         .tyg-div{z-index:-1000;float:left;position:absolute;left:5%;top:20%;}
@@ -81,9 +81,9 @@
         <div class="title1">你还记得故乡的样子吗？</div>
         <div class="imgGroug">
             <ul>
-                <img alt="" class="img0 png" th:src="@{static/h-ui.admin/images/page1_0.png}">
-                <img alt="" class="img1 png" th:src="@{static/h-ui.admin/images/page1_1.png}">
-                <img alt="" class="img2 png" th:src="@{static/h-ui.admin/images/page1_2.png}">
+                <img alt="" class="img0 png" th:src="@{/static/h-ui.admin/images/page1_0.png}">
+                <img alt="" class="img1 png" th:src="@{/static/h-ui.admin/images/page1_1.png}">
+                <img alt="" class="img2 png" th:src="@{/static/h-ui.admin/images/page1_2.png}">
             </ul>
         </div>
         <img alt="" class="img3 png" th:src="@{static/h-ui.admin/images/page1_3.jpg}">
@@ -91,16 +91,16 @@
 </div>
 <div class="tyg-div-denglv">
     <div class="tyg-div-form">
-        <form th:action="@{/login}"  method="post">
+        <form th:action="@{/auth}"  method="post">
             <h2>登录</h2><p class="tyg-p">欢迎访问  云忆</p>
             <div style="margin:5px 0px;">
                 <input type="text" name="adminID" placeholder="请输入账号..."/>
             </div>
             <div style="margin:5px 0px;">
-                <input type="text" name="password" placeholder="请输入密码..."/>
+                <input type="password" name="password" placeholder="请输入密码..."/>
             </div>
-
-            <button   type="submit" >登<span style="width:20px;"></span>录</button>
+            <input type="checkbox" name="remember-me" value="on">记住我
+            <button  type="submit" >登<span style="width:20px;"></span>录</button>
         </form>
     </div>
 </div>
@@ -115,10 +115,5 @@
 </script>
 <![endif]-->
 
-<script th:inline="javascript">
-    if(![[${flag}]] && [[${flag}]]!=null ){
-        alert("账号或密码错误！");
-    }
-</script>
 </body>
 </html>
