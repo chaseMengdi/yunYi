@@ -54,7 +54,7 @@ public class wxUserController {
     @PostMapping("/wxLogin")
     public User exist(@RequestParam(value = "code") String code,
                       @RequestParam(value = "nickName") String nickName,
-                      @RequestParam(value = "gender") Integer gender,
+                      @RequestParam(value = "gender") String gender,
                       @RequestParam(value = "avatarUrl") String avatarUrl,
                       @RequestParam(value = "province") String province,
                       @RequestParam(value = "city") String city) {
@@ -63,7 +63,7 @@ public class wxUserController {
         User regUser;
         //用户未注册，先执行注册操作
         if (userService.existOrNot(openId) == 0) {
-            regUser = new User(openId, nickName, gender, avatarUrl, province, city);
+            regUser = new User(openId, nickName, Integer.valueOf(gender), avatarUrl, province, city);
             userService.reg(regUser);
 
             //用户注册时往visitInfo表添加默认数据
