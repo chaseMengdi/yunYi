@@ -24,7 +24,7 @@ public class wxLikeController {
      * @return 用户主页访问信息
      */
     @PostMapping("/wxDecLikeById")
-    public VisitInfo decById(@RequestBody String id) {
+    public VisitInfo decById(@RequestParam String id) {
         return visitInfoService.decLike(id);
     }
 
@@ -34,7 +34,7 @@ public class wxLikeController {
      * @return
      */
     @PostMapping("/wxLikeById")
-    public VisitInfo incById(@RequestBody String id) {
+    public VisitInfo incById(@RequestParam String id) {
         return visitInfoService.incLike(id);
     }
 
@@ -45,7 +45,7 @@ public class wxLikeController {
      * @return
      */
     @PostMapping("/wxReportById")
-    public VisitInfo reportById(@RequestBody String id) {
+    public VisitInfo reportById(@RequestParam String id) {
         return visitInfoService.incReport(id);
     }
 
@@ -66,7 +66,7 @@ public class wxLikeController {
      * @return
      */
     @PostMapping("/wxListByHometown")
-    public List<VisitInfo> listByHometown(@RequestBody String id) {
+    public List<VisitInfo> listByHometown(@RequestParam String id) {
         return visitInfoService.ListByHometown(userService.findByOpenId(id).getCity());
     }
 

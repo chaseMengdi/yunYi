@@ -34,7 +34,7 @@ public class wxUpgController {
      * @return
      */
     @PostMapping("/wxGetUpgById")
-    public Map<String, Object> get(@RequestBody String id) {
+    public Map<String, Object> get(@RequestParam String id) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("content", pageService.findByOpenID(id));
         map.put("user", userService.findByOpenId(id));
@@ -63,9 +63,9 @@ public class wxUpgController {
      */
     @PostMapping("/setModel")
     public void set(@RequestBody userPageContent u) {
-        //旧模板使用人数-1
+        //旧模板使用人数-1，先由传来的页面内容的openid获取数据库对应的模板号
         pageModelService.dec(pageService.findByOpenID(u.getUserID()).getModelID());
-        //新模板使用人数+1
+        //新模板使用人数+1，再讲传来的页面内容模板号更新到数据库
         pageModelService.inc(u.getModelID());
         pageService.setModelId(u.getModelID(), u.getUserID());
     }
