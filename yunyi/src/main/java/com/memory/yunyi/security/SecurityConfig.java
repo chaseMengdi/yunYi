@@ -37,7 +37,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .passwordEncoder(new BCryptPasswordEncoder()); //解密 加密后的密码
     }
 
-
+    /**
+     * security配置，包括登录配置与页面拦截信息
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().loginPage("/login")
@@ -50,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/login.html","/login","/auth","/static/**").permitAll()
+                    .antMatchers("/login.html","/login","/auth","/static/**","/wxGetUserList","/wxLogin","/wxUpdate","/wxGetUpgById","/wxSaveContent","/setModel","/wxDecLikeById","/wxLikeById","/wxReportById","/wxDescListByLike","/wxListByHometown","/addComment","/commentList").permitAll()
                 .anyRequest().authenticated();
 
         http.logout().logoutSuccessUrl("/login");
