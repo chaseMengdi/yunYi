@@ -2,10 +2,12 @@
 <view class='bg'>
   <view class="trip">
     <view class="trip-top">
-      <image class="trip-user" src="{{user.avatar}}" bindtap=""></image>
+      <navigator class='h1' url='../homepage/homepage?ownerID={{user.userID}}'>
+        <image class="trip-user" src="{{user.avatarUrl}}" bindtap=""></image>
+      </navigator>
       <view class="trip-info">
         <view>
-          <text>{{user.userName}}</text>
+          <text>{{user.nickName}}</text>
           <switch class='mm' bindchange='homeOnly'>
             <text style='font-family:"宋体"; '>看老乡</text>
           </switch>
@@ -27,12 +29,12 @@
   </view>
   <!-- 列表项 -->
   <view class="news">
-    <block wx:for='{{userlist}}'>
-      <navigator url='../homepage/homepage?ownerID={{item.user.userID}}'>
+    <block wx:for='{{userlist}}' wx:key="index">
+      <navigator url='../homepage/homepage?ownerID={{item.userID}}'>
         <view class='new1'>
-          <image class='userAvatar' src='{{item.user.avatar}}'></image>
-          <text decode="{{true}}" class='column'>&nbsp;&nbsp;&nbsp;{{item.user.name}}</text>
-          <text decode="{{true}}" class='column'>&nbsp;{{item.user.hometown}}</text>
+          <image class='userAvatar' src='{{item.user.avatarUrl}}'></image>
+          <text decode="{{true}}" class='column'>&nbsp;&nbsp;&nbsp;{{item.user.nickName}}</text>
+          <text decode="{{true}}" class='column'>&nbsp;{{item.user.city}}</text>
           <text decode="{{true}}" class='column'>{{item.likeNum}}</text>
         </view>
       </navigator>

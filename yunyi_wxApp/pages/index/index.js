@@ -6,7 +6,6 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
   //登录功能
@@ -15,11 +14,12 @@ Page({
     // console.log(wxUserInfo);
     wx.login({
       success(wxloginRes) {
-        // console.log(wxloginRes);
+        // console.log(wxloginRes.code);
         if (wxloginRes.code) {
           wx.request({
             url: app.globalData.reqUrl + 'wxLogin',
-            method: 'POST',
+            method: 'POST', 
+            header: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: {
               code: wxloginRes.code,
               nickName: wxUserInfo.nickName,
@@ -29,7 +29,7 @@ Page({
               city: wxUserInfo.city
             },
             success: function (wxrequestRes) {
-              console.log(wxrequestRes.data);
+              // console.log(wxrequestRes);
               var theUser = wxrequestRes.data;
               //判断用户是否被封禁
               if (theUser.status == "stop") {
@@ -40,35 +40,30 @@ Page({
                 })
               }
               else if (theUser != null && theUser != '') {
-                app.user.openid = theUser.openid;
+                app.user.userID = theUser.openId;
                 app.user.province = theUser.province;
                 app.user.city = theUser.city;
                 app.user.nickName = theUser.nickName;
+                app.user.gender = theUser.gender;
                 app.user.avatarUrl = theUser.avatarUrl;
+                // console.log(app.user);
                 // 弹出提示框
                 wx.showToast({
                   title: '登录成功',
                   icon: 'success',
                   duration: 2000
                 });
-                // wx.switchTab({
-                //   url: "../list/list",
-                // })
+                wx.switchTab({
+                  url: "../list/list",
+                })
               }
             }
           })
-        } else {
+        } 
+        else {
           console.log('wx.login出错，未生成code：' + wxloginRes.errMsg)
         }
       }
     })
   },
-
-  //获取手机号
-  // getPhoneNumber: function(e) {
-  //   console.log(`是否成功调用${e.detail.errMsg}`);
-  //   console.log(`加密算法的初始向量:${e.detail.iv}`);
-  //   console.log(`包括敏感数据在内的完整用户信息的加密数据:${e.detail.encryptedData}`);
-  // }
-
 })

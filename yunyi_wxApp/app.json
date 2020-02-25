@@ -19,8 +19,8 @@
         "text": "广场"
       },
       {
-        "pagePath": "pages/homepage/homepage",
-        "text": "个人"
+        "pagePath": "pages/update/update",
+        "text": "设置"
       }
     ]
   },

@@ -73,7 +73,7 @@ Page({
       var fmData = e.detail.value;
       // 表单数据只包括文本信息，补上头像和id后写入数据库
       fmData.userID = this.data.user.userID;
-      fmData.avatar = this.data.user.avatar;
+      fmData.avatar = this.data.user.avatarUrl;
       // 当用户两次输入的密码不同时给出提示
       if (fmData.password0 != fmData.password) {
         wx.showModal({
