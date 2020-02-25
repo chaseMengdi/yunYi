@@ -23,6 +23,6 @@ public interface VisitInfoRepository extends JpaRepository<VisitInfo, Integer> {
      * @param openId
      * @return
      */
-    @Query(value = "SELECT * FROM visitInfo WHERE userid=?1", nativeQuery = true)
+    @Query(value = "SELECT a FROM VisitInfo a WHERE a.userID=?1")
     VisitInfo findByOpenId(String openId);
 }

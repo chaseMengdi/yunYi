@@ -41,6 +41,8 @@ spring:
             exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
     thymeleaf:
       cache: false
+      prefix: classpath:/templates/
+      suffix: .html
     jpa:
         hibernate:
             ddl-auto: update
