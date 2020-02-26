@@ -54,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/login.html","/login","/auth","/static/**","/wxGetUserList","/wxLogin","/wxUpdate","/wxGetUpgById","/wxSaveContent","/setModel","/wxDecLikeById","/wxLikeById","/wxReportById","/wxDescListByLike","/wxListByHometown","/addComment","/commentList").permitAll()
+                    .antMatchers("/login.html","/login","/auth","/static/**","/wxGetUserAndPageList","/wxLogin","/wxUpdate","/wxGetUpgById","/wxSaveContent","/setModel","/wxDecLikeById","/wxLikeById","/wxReportById","/wxDescListByLike","/wxListByHometown","/addComment","/commentList").permitAll()
                 .anyRequest().authenticated();
 
         http.logout().logoutSuccessUrl("/login");
