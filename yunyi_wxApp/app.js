@@ -6,12 +6,18 @@ App({
     reqUrl: 'http://localhost:8080/'
   },
   user: {
-    userID: null,
-    province: null,
-    city: null,
-    nickName: null,
-    gender: null,
-    avatarUrl: null
+    // userID: null,
+    // province: null,
+    // city: null,
+    // nickName: null,
+    // gender: null,
+    // avatarUrl: null
+avatarUrl:"https://wx.qlogo.cn/mmopen/vi_32/vIPZ4FLhrA7IAme13kU0w92ufsqGLx65SuFDWhQOR5iayPu8P7BYeNPc7rBiaj7C3TuGrHbygCXSXq0Dy6jO6bibA/132",
+    city: "深圳",
+    gender: 2,
+    nickName: "终不似当年",
+    province: "广东",
+    userID: "oJy764gYlGTzVO91zROwCjOqtorY"
   },
 
   onLaunch: function () {

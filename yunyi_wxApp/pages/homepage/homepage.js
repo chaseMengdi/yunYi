@@ -65,7 +65,7 @@ Page({
             visitInfo: result.visitInfo,
             comment: result.comment
           })
-          console.log(that.data.pageContent.text1);
+          // console.log(that.data.pageContent.text1);
         }
       }
     })

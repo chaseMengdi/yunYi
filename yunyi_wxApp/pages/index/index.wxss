@@ -8,7 +8,6 @@ Page {
   width: 100%;
   position:absolute;
   top:20%;
-  text-align: center
 }
 .loginBtnView {
   width: 100%;
@@ -16,7 +15,7 @@ Page {
   top:70%;
 }
 .loginBtn {
-  background-color: rgba(12,172,77,0.3);
+  /* background-color: rgba(12,172,77,0.3); */
   height: 90rpx;
   border-radius: 26rpx;
 }

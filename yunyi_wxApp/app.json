@@ -18,14 +18,20 @@
     "cu-custom": "/colorui/components/cu-custom"
   },
   "tabBar": {
+    "color": "#888",
+    "selectedColor": "#1cbbb4",
     "list": [
       {
         "pagePath": "pages/list/list",
-        "text": "广场"
+        "text": "广场",
+        "iconPath": "imgs/home.png",
+        "selectedIconPath": "imgs/home-fill.png"
       },
       {
         "pagePath": "pages/mypage/mypage",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "imgs/account.png",
+        "selectedIconPath": "imgs/account-fill.png"
       }
     ]
   },

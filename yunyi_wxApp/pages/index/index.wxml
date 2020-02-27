@@ -1,13 +1,12 @@
-<view>
-  <!-- 标题 -->
-  <view class="titleView tx-black">
-    <view class="heading text-sl">云忆</view>
-    <view class="subheading text-xl margin-top">帮助游子寻找老乡与分享老乡</view>
-  </view>
-  <!-- 登录注册按钮 -->
-  <view class="loginBtnView padding-xl">
-     <button class="loginBtn cu-btn block bg-cyan" open-type="getUserInfo" bindgetuserinfo="login">
-     <text class="cuIcon-weixin text-white"> 微信登录</text></button>
-    <view class="loginText text-center margin-top-sm">无账户自动注册</view>
-  </view>
+<!-- 标题 -->
+<view class="titleView tx-black text-center">
+  <view class="text-sl">云忆</view>
+  <view class="text-xl margin-top">帮助游子寻找老乡与分享老乡</view>
+</view>
+<!-- 登录注册 -->
+<view class="loginBtnView padding-xl">
+  <button class="loginBtn cu-btn block bg-cyan" open-type="getUserInfo" bindgetuserinfo="login">
+    <text class="cuIcon-weixin text-white">微信登录</text>
+  </button>
+  <view class="loginText text-center margin-top-sm">无账户自动注册</view>
 </view>

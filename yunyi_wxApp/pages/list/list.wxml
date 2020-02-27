@@ -1,43 +1,51 @@
 <!-- pages/list/list.wxml -->
-<view class='bg'>
-  <view class="trip">
-    <view class="trip-top">
-      <navigator class='h1' url='../homepage/homepage?ownerID={{user.userID}}'>
-        <image class="trip-user" src="{{user.avatarUrl}}" bindtap=""></image>
-      </navigator>
-      <view class="trip-info">
-        <view>
-          <text>{{user.nickName}}</text>
-          <switch class='mm' bindchange='homeOnly'>
-            <text style='font-family:"宋体"; '>看老乡</text>
-          </switch>
+
+<!-- 标题栏 -->
+<cu-custom bgColor="bg-gradual-blue">
+	<view slot="content">云忆</view>
+</cu-custom>
+<!-- 看老乡组件 -->
+<view class="cu-bar bg-white solid-bottom ">
+  <view class='action'>
+    <text class='cuIcon-titles text-cyan'></text> 看老乡
+  </view>
+  <view class='action'>
+    <switch class='sm' bindchange='homeOnly'></switch>
+  </view>
+</view>
+<!-- 主体，循环生成卡片 -->
+<view class="myCardView cu-card dynamic no-card" wx:for='{{userlist}}' wx:key="index">
+  <view class="cu-item shadow">
+    <!-- 用户信息区 -->
+    <view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <!-- 头像 -->
+        <view class="cu-avatar round lg" style="background-image:url({{item.VisitInfo.user.avatarUrl}});"></view>
+        <view class="content flex-sub">
+          <!-- 昵称 -->
+          <view>{{item.VisitInfo.user.nickName}}</view>
+          <!-- 省市 -->
+          <view class="text-gray text-sm flex justify-between">
+            {{item.VisitInfo.user.province + item.VisitInfo.user.city}}
+          </view>
         </view>
       </view>
     </view>
-  </view>
-  <view class="title">
-    <text id="font">热门主页</text>
-  </view>
-  <!-- 表头信息 -->
-  <view class='news'>
-    <view class="new1">
-      <text class='column'>头像</text>
-      <text class='column'>用户名</text>
-      <text decode="{{true}}" class='column'>家乡</text>
-      <text decode="{{true}}" class='column'>点赞数</text>
+    <!-- 文字区 -->
+    <view class="text-content">
+      {{item.userPageContent.text1}}
     </view>
-  </view>
-  <!-- 列表项 -->
-  <view class="news">
-    <block wx:for='{{userlist}}' wx:key="index">
-      <navigator url='../homepage/homepage?ownerID={{item.userID}}'>
-        <view class='new1'>
-          <image class='userAvatar' src='{{item.user.avatarUrl}}'></image>
-          <text decode="{{true}}" class='column'>&nbsp;&nbsp;&nbsp;{{item.user.nickName}}</text>
-          <text decode="{{true}}" class='column'>&nbsp;{{item.user.city}}</text>
-          <text decode="{{true}}" class='column'>{{item.likeNum}}</text>
-        </view>
-      </navigator>
-    </block>
+    <!-- 图片区 -->
+    <view class="grid flex-sub padding-lr">
+      <!-- 有图片就显示图片（only-img），没有就隐藏这块 -->
+      <view class="bg-img {{item.userPageContent.image1?'only-img':''}}" style="background-image:url({{item.userPageContent.image1}});" >
+      </view>
+    </view>
+    <!-- 右下角访问、点赞、评论数 -->
+    <view class="text-gray text-sm text-right padding">
+      <text class="cuIcon-attentionfill margin-lr-xs"></text> {{item.VisitInfo.visitNum}}
+      <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.VisitInfo.likeNum}}
+      <text class="cuIcon-messagefill margin-lr-xs"></text> {{item.VisitInfo.commentNum}}
+    </view>
   </view>
 </view>
