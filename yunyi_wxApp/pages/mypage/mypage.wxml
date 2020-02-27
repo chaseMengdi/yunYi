@@ -13,6 +13,7 @@
     <view class="trip-info">
       <view class="h1">{{owner.nickName}}</view>
       
+      
       <view class="detail">
       <text>{{visitInfo.likeNum}}次喜欢</text>
       <text>{{visitInfo.commentNum}}条评论</text>
@@ -78,17 +79,5 @@
 </view>
 <!--评论区结束  -->
 
-<template is='segline' />
-
-   <view class="title_text">
-      <text>发表评论</text>
-    </view>
-
-    <form bindsubmit='comment'>
-    <textarea placeholder="请输入你的评论^_^" name="text"></textarea>
-    <button class="commit_submit_btn" type="primary"  form-type="submit">发布</button>
-    </form>
-
-<!-- </scroll-view> -->
 
 

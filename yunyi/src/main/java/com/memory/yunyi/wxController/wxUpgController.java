@@ -32,7 +32,7 @@ public class wxUpgController {
      *
      * @param id 用户openid
      * @return
-     */
+     */wxSaveContent
     @PostMapping("/wxGetUpgById")
     public Map<String, Object> get(@RequestParam String id) {
         Map<String, Object> map = new HashMap<String, Object>();

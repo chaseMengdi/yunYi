@@ -15,21 +15,13 @@ App({
   },
 
   onLaunch: function () {
-    wx.checkSession({
-      success() {
-        console.log("yidenglu")
-      },
-      fail() {
-        wx.navigateTo({
-          url: 'index',
-        })
+    wx.getSystemInfo({
+      success: e => {
+        this.globalData.StatusBar = e.statusBarHeight;
+        let custom = wx.getMenuButtonBoundingClientRect();
+        this.globalData.Custom = custom;
+        this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
       }
     })
-    // // 登录
-    // wx.login({
-    //   success: res => {
-    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
-    //   }
-    // })
   }
 })

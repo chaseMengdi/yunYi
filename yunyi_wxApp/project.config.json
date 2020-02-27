@@ -24,7 +24,7 @@
 		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.1.1",
+	"libVersion": "2.10.1",
 	"appid": "wx3c26f5c92a626a3f",
 	"projectname": "yunyi_wxApp",
 	"isGameTourist": false,

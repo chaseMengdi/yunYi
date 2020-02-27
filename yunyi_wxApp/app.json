@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/list/list",
     "pages/homepage/homepage",
+    "pages/mypage/mypage",
     "pages/choose/choose",
     "pages/update/update"
   ],
@@ -10,7 +11,11 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "云忆",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
   },
   "tabBar": {
     "list": [
@@ -19,8 +24,8 @@
         "text": "广场"
       },
       {
-        "pagePath": "pages/update/update",
-        "text": "设置"
+        "pagePath": "pages/mypage/mypage",
+        "text": "我的"
       }
     ]
   },

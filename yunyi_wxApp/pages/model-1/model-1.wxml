@@ -12,7 +12,7 @@
         <view class="day-content">
           <image mode="widthFix" class="cover" src="{{image1}}" id='1' bindtap="pickImage"></image>
         </view>
-        <textarea auto-height name='text1' disabled='{{!userIsOwner}}' value='{{text1}}'></textarea>
+        <textarea  name='text1' disabled='{{!userIsOwner}}' value='{{text1}}'></textarea>
       </view>
     </view>
 

@@ -25,32 +25,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   //加载主页时读取所需要的pageContent,owner,visitinfo,comment
-  onLoad: function (e) {
+  onLoad: function () {
+    let that = this
     // console.log(e)
-    var that = this;
-    if (e.ownerID == undefined) {
-      return;
-    }
     that.setData({
-      ownerID: e.ownerID,
+      ownerID: app.user.userID,
+      userIsOwner: true
     });
-
-    if (app.user.userID == e.ownerID) {
-      this.setData({
-        userIsOwner: true
-      })
-    };
     wx.request({
       // 发起请求，读取该用户的主页信息
       url: app.globalData.reqUrl + 'wxGetUpgById',
       header: { 'Content-Type': 'application/x-www-form-urlencoded' },
       data: {
-        id: e.ownerID
+        id: app.user.userID
       },
       method: 'POST',
       success: function (res) {
         var result = res.data;
-        // console.log(result);
+        console.log(result);
         if (result == undefined) {
           var text = '获取数据失败' + res.data.errMsg;
           wx.showToast({
@@ -65,7 +57,6 @@ Page({
             visitInfo: result.visitInfo,
             comment: result.comment
           })
-          console.log(that.data.pageContent.text1);
         }
       }
     })
@@ -141,10 +132,9 @@ Page({
     // 在表单数据中添加其他属性，
     //否则，添加进comment表中除了text字段都会被置为null
     fmData.commenterID = app.user.userID;
-    fmData.ownerID = this.data.ownerID;
+    fmData.ownerID = this.data.owner.userID;
     fmData.commenterName = app.user.nickName;
     fmData.time = util.formatTime(new Date());
-    // console.log(fmData);
     wx.request({
       url: app.globalData.reqUrl + 'addComment',
       method: 'POST',
@@ -154,8 +144,8 @@ Page({
       },
       success: function (res) {
         if (res.data != null && res.data != '') {
-          // console.log(JSON.stringify(fmData));
-          // console.log(res);
+          console.log(JSON.stringify(fmData));
+          console.log(res);
           wx.showToast({
             title: '发表成功',
             icon: '',
@@ -194,7 +184,7 @@ Page({
       wx.request({
         url: app.globalData.reqUrl + 'wxLikeById',
         method: 'POST',
-        data: {id: that.data.ownerID},
+        data: { id: that.data.ownerID },
         header: { 'Content-Type': 'application/x-www-form-urlencoded' },
         success: function (res) {
           that.setData({
@@ -272,19 +262,19 @@ Page({
         sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
         success: ret => {
           var filePath = ret.tempFilePaths[0];
+
           console.log("图片临时网址，小程序关闭后将会被销毁：" + filePath);
           //微信API将图片上传到图床
           //返回网络地址
           wx.uploadFile({
-            url: 'https://sm.ms/api/v2/upload',
+            url: 'https://sm.ms/api/upload',
             filePath: filePath,
             name: 'smfile',
             success: res => {
               //逆向转换JSON字符串后抽取网址
-              console.log(res)
               console.log("图片上传成功！")
-              console.log(e.target.id)
               console.log(JSON.parse(res.data).data.url)
+              console.log(e.target.id)
               // 通过图片组件的Id不同来修改不同的数据
               switch (e.target.id) {
                 case '1':

@@ -1,8 +1,13 @@
-<view class="container">
-  <!-- 登录注册按钮 -->
-  <view class="loginBtnView">
-    <button class="loginBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" open-type="getUserInfo" bindgetuserinfo="login">微信登陆</button>
-    <view>无账户自动注册</view>
+<view>
+  <!-- 标题 -->
+  <view class="titleView tx-black">
+    <view class="heading text-sl">云忆</view>
+    <view class="subheading text-xl margin-top">帮助游子寻找老乡与分享老乡</view>
   </view>
-
+  <!-- 登录注册按钮 -->
+  <view class="loginBtnView padding-xl">
+     <button class="loginBtn cu-btn block bg-cyan" open-type="getUserInfo" bindgetuserinfo="login">
+     <text class="cuIcon-weixin text-white"> 微信登录</text></button>
+    <view class="loginText text-center margin-top-sm">无账户自动注册</view>
+  </view>
 </view>
