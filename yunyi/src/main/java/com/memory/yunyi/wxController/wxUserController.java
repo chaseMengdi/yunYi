@@ -13,8 +13,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSON;
 
 
-import java.util.List;
-
+import java.util.*;
 
 
 @RestController
@@ -31,14 +30,24 @@ public class wxUserController {
 
 
     /**
-     * 获取homepage用户列表
+     * 获取homepage用户列表以及用户主页
      *
      * @return
      */
-    @GetMapping("/wxGetUserList")
-    public List<User> getUserList() {
-        List<User> list = userService.getAllUser();
-        return list;
+    @GetMapping("/wxGetUserAndPageList")
+    public Map<String,Object> getUserList() {
+        //获取用户列表以及用户主页，并以openId排序，
+        // 使map中users/userPages顺序对应
+        List<User> users=userService.getAllUser();
+        List<userPageContent> userPages=pageService.getAllContent();
+        Collections.sort(users);
+        Collections.sort(userPages);
+
+        Map<String,Object> map=new HashMap<>();
+        map.put("users",users);
+        map.put("userPages",userPages);
+
+        return map;
     }
 
     /**

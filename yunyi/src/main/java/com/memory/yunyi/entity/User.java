@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class User implements Comparable<User> {
     @Id
     private String openId;
     private String nickName;
@@ -96,5 +96,15 @@ public class User {
                 ", city='" + city + '\'' +
                 ", status='" + status + '\'' +
                 '}';
+    }
+
+    /**
+     * 排序则按照openId进行排序，用于小程序list页面展示
+     * @param other
+     * @return
+     */
+    @Override
+    public int compareTo(User other) {
+        return this.openId.compareTo(other.getOpenId());
     }
 }

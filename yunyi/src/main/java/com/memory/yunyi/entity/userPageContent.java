@@ -5,7 +5,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class userPageContent {
+public class userPageContent implements Comparable<userPageContent> {
     @Id
     private String userID;
     private String text1;
@@ -135,5 +135,15 @@ public class userPageContent {
         this.image5 = image5;
         this.image3 = image3;
         this.modelID = modelID;
+    }
+
+    /**
+     * 排序则按照userID(openId)进行排序，用于小程序list页面展示
+     * @param other
+     * @return
+     */
+    @Override
+    public int compareTo(userPageContent other) {
+        return this.userID.compareTo(other.getUserID());
     }
 }
