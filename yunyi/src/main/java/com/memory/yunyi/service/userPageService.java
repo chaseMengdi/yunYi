@@ -8,6 +8,8 @@ import java.util.List;
 public interface userPageService {
     List<userPageContent> getAllContent();
 
+    List<userPageContent> pageListByHometown(String city);
+
     userPageContent findByOpenID(String id);
 
     void deleteContent(Integer id);

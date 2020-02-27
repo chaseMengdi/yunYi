@@ -1,7 +1,7 @@
 package com.memory.yunyi.wxController;
-import com.memory.yunyi.service.UserService;
-import com.memory.yunyi.entity.User;
+
 import com.memory.yunyi.entity.VisitInfo;
+import com.memory.yunyi.service.UserService;
 import com.memory.yunyi.service.VisitInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +30,7 @@ public class wxLikeController {
 
     /**
      * 将某一用户点赞总数+1
+     *
      * @param id 用户opneId
      * @return
      */
@@ -41,6 +42,7 @@ public class wxLikeController {
 
     /**
      * 将某一用户被举报总数+1
+     *
      * @param id 用户opneId
      * @return
      */
@@ -52,24 +54,13 @@ public class wxLikeController {
 
     /**
      * 读取用户列表按点赞数排列
+     *
      * @return
      */
     @GetMapping("/wxDescListByLike")
     public List<VisitInfo> listByLike() {
         return visitInfoService.DescByLike();
     }
-
-
-    /**
-     * 筛选与用户相同家乡(city)的用户，按点赞数排列
-     * @param id 用户openId
-     * @return
-     */
-    @PostMapping("/wxListByHometown")
-    public List<VisitInfo> listByHometown(@RequestParam String id) {
-        return visitInfoService.ListByHometown(userService.findByOpenId(id).getCity());
-    }
-
 
 
 }

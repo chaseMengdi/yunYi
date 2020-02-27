@@ -14,6 +14,11 @@ public class userPageServiceImpl implements userPageService {
     private userPageRepository userPageRepository;
 
     @Override
+    public List<userPageContent> pageListByHometown(String city) {
+        return userPageRepository.pageListByHometown(city);
+    }
+
+    @Override
     public List<userPageContent> getAllContent() {
 
         return userPageRepository.findAll();

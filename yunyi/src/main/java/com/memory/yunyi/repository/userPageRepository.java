@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 public interface userPageRepository extends JpaRepository<userPageContent, Integer> {
@@ -25,4 +26,13 @@ public interface userPageRepository extends JpaRepository<userPageContent, Integ
      */
     @Query(value = "SELECT * FROM user_page_content WHERE userid=?1", nativeQuery = true)
     userPageContent findByOpenId(String id);
+
+    /**
+     * 寻找对应用户同一家乡的人员
+     * @param city 家乡
+     * @return
+     */
+    @Query(value = "SELECT a FROM userPageContent a WHERE a.userID IN (" +
+            "SELECT b.openId FROM User b WHERE b.city=?1)")
+    List<userPageContent> pageListByHometown(String city);
 }

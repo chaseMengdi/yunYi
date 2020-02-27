@@ -11,7 +11,7 @@ public interface VisitInfoService {
 
     List<VisitInfo> DescByReport();
 
-    List<VisitInfo> ListByHometown(String hometown);
+    List<VisitInfo> infoListByHometown(String hometown);
 
     VisitInfo findByOpenId(String openId);
 
@@ -24,4 +24,6 @@ public interface VisitInfoService {
     VisitInfo incComment(String openId);
 
     VisitInfo add(VisitInfo v);
+
+    List<VisitInfo> getAllVisitInfos();
 }

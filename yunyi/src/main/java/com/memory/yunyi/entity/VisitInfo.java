@@ -6,7 +6,7 @@ import javax.persistence.OneToOne;
 
 
 @Entity
-public class VisitInfo {
+public class VisitInfo implements Comparable<VisitInfo> {
     @Id
     String userID;
     Integer likeNum;
@@ -87,5 +87,10 @@ public class VisitInfo {
                 ", reportNum=" + reportNum +
                 ", user=" + user.toString() +
                 '}';
+    }
+
+    @Override
+    public int compareTo(VisitInfo other) {
+        return this.userID.compareTo(other.getUserID());
     }
 }
