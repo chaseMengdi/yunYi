@@ -3,10 +3,6 @@
 @import "../model-2/model-2.wxss";
 @import "../model3/model3.wxss";
 
-page{
-  /* background-color: #E0FFFF; */
-  background-image: url('http://img6.3lian.com/c23/desk4/07/14/d/08.jpg')
-}
 .trip{
   padding: 40rpx 30rpx 0;
 }

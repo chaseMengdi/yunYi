@@ -1,6 +1,5 @@
 /* pages/model-1/model-1.wxss */
 .trip1{
-  background-image: url('http://d.5857.com/pp_170906/009.jpg') ;
   background-size: contain; 
   background-attachment: fixed;
 }

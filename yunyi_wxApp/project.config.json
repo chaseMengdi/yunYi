@@ -67,6 +67,13 @@
 					"pathName": "pages/mypage/mypage",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/homepage/homepage",
+					"pathName": "pages/homepage/homepage",
+					"query": "ownerID=445637026",
+					"scene": null
 				}
 			]
 		}
