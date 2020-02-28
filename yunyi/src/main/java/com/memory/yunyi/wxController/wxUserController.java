@@ -30,9 +30,9 @@ public class wxUserController {
 
 
     /**
-     * 获取homepage用户列表/用户主页信息/用户主页访问信息
+     * 获取homepage用户主页信息/用户主页访问信息
      *
-     * @return
+     * @return JSONArray
      */
     @GetMapping("/wxGetUserAndPageList")
     public JSONArray getUserList() {
@@ -57,10 +57,10 @@ public class wxUserController {
     }
 
     /**
-     * 筛选与用户相同家乡(city)的用户列表/用户主页信息/用户主页访问信息，按点赞数排列
+     * 筛选与用户相同家乡(city)的用户主页信息/用户主页访问信息
      *
      * @param id 用户openId
-     * @return
+     * @return JSONArray
      */
     @PostMapping("/wxListByHometown")
     public JSONArray listByHometown(@RequestParam String id) {
