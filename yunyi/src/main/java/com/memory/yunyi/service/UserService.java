@@ -27,4 +27,6 @@ public interface UserService {
     String GET(String url);
 
     Integer existOrNot(String openid);
+
+//    List<Object> wxGetUserAndPageList();
 }

@@ -48,9 +48,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "SELECT * FROM user WHERE open_id=?1", nativeQuery = true)
     User findByOpenId(String openId);
 
-//    @Query(value = "select a from User  a where a.userID=?1 and a.password=?2")
-//    User login(Integer userID, String password) ;
-
     /**
      * 修改指定用户的昵称和头像
      *
@@ -71,6 +68,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      */
     @Query(value = "SELECT COUNT(*) FROM user WHERE open_id=?1", nativeQuery = true)
     Integer existsOrNotByOpenId(String openid);
-
-
 }

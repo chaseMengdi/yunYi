@@ -127,4 +127,9 @@ public class UserServiceImpl implements UserService {
         }
         return result;
     }
+
+//    @Override
+//    public List<Object> wxGetUserAndPageList() {
+//        return userRepository.wxGetUserAndPageList();
+//    }
 }

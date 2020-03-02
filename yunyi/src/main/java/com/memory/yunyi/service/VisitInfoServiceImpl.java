@@ -31,8 +31,8 @@ public class VisitInfoServiceImpl implements VisitInfoService {
     }
 
     @Override
-    public List<VisitInfo> ListByHometown(String hometown) {
-        return visitInfoRepository.listByHometown(hometown);
+    public List<VisitInfo> infoListByHometown(String hometown) {
+        return visitInfoRepository.pageListByHometown(hometown);
     }
 
     @Override
@@ -73,5 +73,8 @@ public class VisitInfoServiceImpl implements VisitInfoService {
         return visitInfoRepository.save(v);
     }
 
-
+    @Override
+    public List<VisitInfo> getAllVisitInfos() {
+        return visitInfoRepository.findAll();
+    }
 }
