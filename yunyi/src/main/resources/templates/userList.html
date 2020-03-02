@@ -88,7 +88,9 @@
 					<td th:text="${User.getOpenId()}">1</td>
 					<td><a th:href="@{'/changeUserHome/'+${User.getOpenId()}}"><u><label
 							th:text="${User.getNickName()}"></label></u></a></td>
-					<td th:text="${User.getGender()}">男</td>
+					<td th:if="${User.getGender()} eq 0">未知</td>
+					<td th:if="${User.getGender()} eq 1">男</td>
+					<td th:if="${User.getGender()} eq 2">女</td>
 					<td th:text="${User.getProvince()}">北京市</td>
 					<td class="text-l" th:text="${User.getCity()}">武汉市</td>
 					<td th:text="${User.getStatus()}">正常</td>
