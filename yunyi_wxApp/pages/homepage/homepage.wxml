@@ -1,94 +1,108 @@
 <!--pages/homepage/homepage.wxml-->
 
-<!--导入模板布局  -->
-<import src='../model-1/model-1.wxml'/>
-<import src='../model-2/model-2.wxml'/>
-<import src='../model3/model3.wxml'/> 
+<!-- 头部 -->
+<view class="myHead bg-gradual-blue">
+  <navigator class="padding-left padding-top-xl" open-type="navigateBack">
+    <text class="cuIcon-back"></text> 返回
+  </navigator>
+  <view class="myOwnerInfo text-center">
+    <view class="cu-avatar xl round" style="background-image:url({{owner.avatarUrl}});">
+      <view class="cu-tag badge {{owner.gender%2==0?'cuIcon-female bg-pink':'cuIcon-male bg-blue'}}"></view>
+    </view>
+    <view class="text-xxl">{{owner.nickName}}</view>
+  </view>
+  <view class="myVisitInfo flex justify-center text-center margin-top">
+    <view class="margin-lr">喜欢 {{visitInfo.likeNum}}</view>
+    <view class="margin-lr">评论 {{visitInfo.commentNum}}</view>
+    <view class="margin-lr">举报 {{visitInfo.reportNum}}</view>
+  </view>
 
+</view>
+<!-- 头部结束 -->
 
-<view class="trip">
-  <view class="trip-top" >
+<!-- 按钮栏 -->
+<view class="myButtonBar flex justify-center">
+  <block wx:if="{{userIsOwner}}">
+  </block>
+  <block wx:else>
+    <van-button plain type="info" size="small" round bind:click="Like">{{likeText}}</van-button>
+    <van-button plain type="info" size="small" round bind:click="report">{{reportText}}</van-button>
+    <van-dialog id="van-dialog" />
+  </block>
+</view>
+<!-- 按钮栏结束 -->
 
-    <image class="trip-user" src="{{owner.avatarUrl}}"  bindtap="goUpdate"></image>  
-    <view class="trip-info">
-      <view class="h1">{{owner.nickName}}</view>
-      
-      <view class="detail">
-      <text>{{visitInfo.likeNum}}次喜欢</text>
-      <text>{{visitInfo.commentNum}}条评论</text>
-       <text>{{visitInfo.reportNum}}条举报</text>
-       <button class='choose_btn' hidden='{{!userIsOwner}}' bindtap='goChooseModel' size='mini'>选择模板</button> 
+<!-- tab栏 -->
+<van-tabs sticky animated swipeable>
+  <!-- 回忆tab -->
+  <van-tab title="回忆">
+    <!-- 垂直导航 -->
+    <view class="VerticalBox">
+      <!-- 左侧导航 -->
+      <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}">
+        <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key="index" bindtap='tabSelect' data-id="{{index}}">
+          回忆{{item.name}}
+        </view>
+      </scroll-view>
+      <!-- 左侧导航结束 -->
+      <!-- 右侧内容 -->
+      <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="%" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+        <form bindsubmit='saveContent'>
+          <view class="padding" wx:for="{{list}}" wx:key="index" id="main-{{index}}">
+            <view class='bg-white'>
+              <!--  hidden="{{item.image ? false : true}}"   -->
+              <image id="index" src="{{item.image}}" mode="widthFix" bindtap="pickImage"></image>
+              <textarea name="text{{index}}" class="myTextarea padding" disabled='{{!userIsOwner}}' value="{{item.text}}"></textarea>
+            </view>
+          </view>
+          <button class="mySaveButton cu-btn round lines-blue" form-type='submit'>保存</button>
+        </form>
+      </scroll-view>
+      <!-- 右侧内容结束 -->
+    </view>
+  </van-tab>
+  <!-- 回忆tab结束 -->
+  <!-- 评论tab -->
+  <van-tab title="评论">
+    <!-- 评论列表 -->
+    <view class="cu-list menu-avatar comment solids-top">
+      <view class="cu-item" wx:for="{{comment}}" wx:key="index">
+        <view class="cu-avatar round" style="background-image:url({{item.avatarUrl}});"></view>
+        <view class="content">
+          <view class="text-grey">{{item.commenterName}}</view>
+          <view class="margin-top-sm text-gray text-content text-df">
+            {{item.text}}
+          </view>
+          <view class="flex justify-between">
+            <view class="text-gray text-df">{{item.time}}</view>
+          </view>
+        </view>
       </view>
-      <!-- <view wx:if='{{userIsOwner}}'>
-       
-       </view> -->
     </view>
-  </view>
- </view>
-
-<!--设置间断线分隔内容区域，同时设定为模板后面使用  -->
-<template name='segline'>
-<view class="seg_line_box">
-  <view class="seg_line_left"></view>
-  <view class="seg_line_dot"></view>
-  <view class="seg_line_right"></view>
-</view>
-</template>
-<template is='segline' />
-
-  <!-- <scroll-view scroll-y="true"  style="height: 675px"> -->
-
- <!--主页内容区域  -->
- <!--根据PageContent中的模板号动态选择模板的wxmL文件  -->
- <form bindsubmit='saveContent'>
- <view wx:if='{{pageContent.modelID==1}}'>
- <template is="t1" data="{{...pageContent,userIsOwner}}"/>
-</view>
-
-<view wx:if='{{pageContent.modelID==2}}'>
- <template is="t2" data="{{...pageContent,userIsOwner,curIndex:thisCurIndex}}"/>
-</view>
-
-<view wx:if='{{pageContent.modelID==3}}'>
- <template is="t3" data="{{...pageContent,userIsOwner}}"/>
-</view>
-<!--内容区结束  -->
-  
-<view>
- <image src="{{likeUrl}}" class="bt-img" bindtap="Like" style="{{style_img}}"></image>
- <image src="https://i.loli.net/2018/12/02/5c03ea7f66898.png" class="bt-img2" bindtap="report" style="{{style_img}}"></image>
- <button hidden='{{!userIsOwner}}' type='primary' class="save_btn" size='mini'  form-type='submit'>保存</button>
-  </view>
-</form>
-
-
-<template is='segline' />
-
-  
- <view class="title_text">
-      <text>评论列表</text>
-  </view>
-
-<!--显示评论区-->
-<view wx:for="{{comment}}" wx:key="index">
-  {{item.commenterName}}  {{item.time}}
-  <view>
-    {{item.text}}
-  </view>
-</view>
-<!--评论区结束  -->
-
-<template is='segline' />
-
-   <view class="title_text">
-      <text>发表评论</text>
-    </view>
-
+    <!-- 发布评论 -->
     <form bindsubmit='comment'>
-    <textarea placeholder="请输入你的评论^_^" name="text"></textarea>
-    <button class="commit_submit_btn" type="primary"  form-type="submit">发布</button>
+      <view class="cu-bar input">
+        <view class="cu-avatar round" style="background-image:url({{user.avatarUrl}});"></view>
+        <view class="action">
+          <text class="cuIcon-roundaddfill text-grey"></text>
+        </view>
+        <input class="solid-bottom" value="{{blankComment}}" maxlength="300" cursor-spacing="10" name="text"></input>
+        <view class="action">
+          <text class="cuIcon-emojifill text-grey"></text>
+        </view>
+        <button class="cu-btn bg-green shadow-blur" form-type="submit">发送</button>
+      </view>
     </form>
+  </van-tab>
+  <!-- 评论tab结束 -->
+</van-tabs>
+<!-- tab栏结束 -->
 
-<!-- </scroll-view> -->
 
-
+<!--主页内容区域  -->
+<!--根据PageContent中的模板号动态选择模板的wxmL文件  -->
+<!-- <form bindsubmit='saveContent'>
+  <view>
+    <button hidden='{{!userIsOwner}}' type='primary' class="save_btn" size='mini' form-type='submit'>保存</button>
+  </view>
+</form> -->

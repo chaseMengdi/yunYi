@@ -1,7 +1,6 @@
 // pages/list/list.js
 
 const app = getApp()
-var notReqHome = true // 未请求过老乡flag（错误：刚开始写在data里了）
 
 Page({
 
@@ -31,7 +30,7 @@ Page({
       header: {'Content-Type': 'application/json'},
       success: function (res) {
         // console.log("list请求成功");
-        console.log(res.data);
+        // console.log(res.data);
         var thelist = res.data;
         if (thelist == null) {
           var toastText = '获取数据失败' + res.data.errMsg;
@@ -52,8 +51,8 @@ Page({
 
   homeOnly: function(e) {
     var that = this;
-    // 点击又未请求过才进行请求，避免重复请求
-    if (e.detail.value && notReqHome) {
+    // 老乡list为空才进行请求，避免重复请求
+    if (e.detail.value && (that.data.hometownUserList !=null) ) {
       wx.request({
         // 发起请求，返回老乡列表数据
         url: app.globalData.reqUrl + 'wxListByHometown',
@@ -62,7 +61,7 @@ Page({
         header: { 'Content-Type': 'application/x-www-form-urlencoded' },
         success: function(res) {
           // console.log("请求成功了");
-          // console.log(res.data);
+          console.log(res.data);
           var thelist = res.data;
           if (thelist == null) {
             var toastText = '获取数据失败' + res.data.errMsg;
@@ -76,7 +75,6 @@ Page({
               hometownUserList: thelist,
               userlist: thelist
             })
-            notReqHome = false //请求过了就把为请求的flag设置为false
           }
         }
       })

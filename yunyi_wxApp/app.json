@@ -15,7 +15,11 @@
     "navigationStyle": "custom"
   },
   "usingComponents": {
-    "cu-custom": "/colorui/components/cu-custom"
+    "cu-custom": "/colorui/components/cu-custom",
+    "van-tab": "miniprogram_npm/@vant/weapp/tab/index",
+    "van-tabs": "miniprogram_npm/@vant/weapp/tabs/index",
+    "van-button": "miniprogram_npm/@vant/weapp/button/index",
+    "van-dialog": "miniprogram_npm/@vant/weapp/dialog/index"
   },
   "tabBar": {
     "color": "#888",

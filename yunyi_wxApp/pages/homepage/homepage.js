@@ -1,4 +1,6 @@
 // pages/homepage/homepage.js
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
+
 const app = getApp()
 const util = require('../../utils/util.js')
 
@@ -8,17 +10,25 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 导航用
+    TabCur: 0,
+    MainCur: 0,
+    VerticalNavTop: 0,
+    list: [],
+    load: true,
+    // 用户数据用
+    user: app.user,
     ownerID: null,
-    pageContent: {
-      image1: 'https://i.loli.net/2018/12/02/5c03e99cd4b38.jpg'
-    }, //存放模板号，文字内容，图片路径
     owner: null,
     visitInfo: null, //存放评论总数，举报总数，点赞总数
     comment: null, //存放主页的评论列表
+    pageContent: null,
     likeFlag: 0,
-    likeUrl: "https://i.loli.net/2018/12/02/5c03e99c328e7.png",
+    likeText: "喜欢",
+    reportText: "举报",
     userIsOwner: false, //判断登录用户是否为主页主人
-    thisCurIndex: 0,
+    thisCurIndex: 0, 
+    blankComment: "" //发送评论后清空
   },
 
   /**
@@ -26,6 +36,22 @@ Page({
    */
   //加载主页时读取所需要的pageContent,owner,visitinfo,comment
   onLoad: function (e) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
+    // 垂直导航用
+    let list = [{}];
+    for (let i = 0; i < 5; i++) {
+      list[i] = {};
+      list[i].name = i + 1;
+      list[i].id = i;
+    }
+    this.setData({
+      list: list,
+      listCur: list[0]
+    })
+
     // console.log(e)
     var that = this;
     if (e.ownerID == undefined) {
@@ -50,7 +76,7 @@ Page({
       method: 'POST',
       success: function (res) {
         var result = res.data;
-        // console.log(result);
+        console.log(result);
         if (result == undefined) {
           var text = '获取数据失败' + res.data.errMsg;
           wx.showToast({
@@ -59,13 +85,17 @@ Page({
             duration: 2000
           });
         } else {
+          for (let i = 0; i < 5; i++) {
+            list[i].image = result.content[i].image;
+            list[i].text = result.content[i].text;
+          }
           that.setData({
             owner: result.user,
-            pageContent: result.content,
             visitInfo: result.visitInfo,
-            comment: result.comment
+            comment: result.comment, 
+            pageContent: result.content,
+            list: list
           })
-          // console.log(that.data.pageContent.text1);
         }
       }
     })
@@ -85,56 +115,50 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    wx.hideLoading()
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-
-
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  // 选择tab
+  tabSelect(e) {
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      MainCur: e.currentTarget.dataset.id,
+      VerticalNavTop: (e.currentTarget.dataset.id - 1) * 50
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    return {
-      title: "美丽的家乡",
-      path: 'pages/homepage/homepage'
+  VerticalMain(e) {
+    let that = this;
+    let list = this.data.list;
+    let tabHeight = 0;
+    if (this.data.load) {
+      for (let i = 0; i < list.length; i++) {
+        let view = wx.createSelectorQuery().select("#main-" + list[i].id);
+        view.fields({
+          size: true
+        }, data => {
+          list[i].top = tabHeight;
+          tabHeight = tabHeight + data.height;
+          list[i].bottom = tabHeight;
+        }).exec();
+      }
+      that.setData({
+        load: false,
+        list: list
+      })
     }
-
-  }
+    let scrollTop = e.detail.scrollTop + 20;
+    for (let i = 0; i < list.length; i++) {
+      if (scrollTop > list[i].top && scrollTop < list[i].bottom) {
+        that.setData({
+          VerticalNavTop: (list[i].id - 1) * 50,
+          TabCur: list[i].id
+        })
+        return false
+      }
+    }
+  },
 
   //评论
-  ,
   comment: function (e) {
     var that = this;
     var fmData = e.detail.value;
@@ -142,6 +166,7 @@ Page({
     //否则，添加进comment表中除了text字段都会被置为null
     fmData.commenterID = app.user.userID;
     fmData.ownerID = this.data.ownerID;
+    fmData.avatarUrl = this.data.user.avatarUrl;
     fmData.commenterName = app.user.nickName;
     fmData.time = util.formatTime(new Date());
     // console.log(fmData);
@@ -161,12 +186,12 @@ Page({
             icon: '',
             duration: 2000
           })
-
           //将本条评论数据存为新串，在新串后连接已有数据
           var newComment = [fmData];
           that.data.comment = newComment.concat(that.data.comment);
           that.setData({
             comment: that.data.comment,
+            blankComment:""
           });
         } else {
           wx.showToast({
@@ -175,7 +200,6 @@ Page({
             duration: 2000
           })
         }
-
       }
     })
   }
@@ -187,8 +211,8 @@ Page({
     // likeflag为0则表示未点赞，先改界面数据
     if (this.data.likeFlag == 0) {
       this.setData({
-        likeUrl: "https://i.loli.net/2018/12/02/5c03e99c32191.png",
-        likeFlag: 1
+        likeFlag: 1,
+        likeText: "已喜欢"
       })
       // 点赞写入到数据库
       wx.request({
@@ -206,8 +230,8 @@ Page({
     // 否则likeflag为1则已点赞，先改界面数据
     else {
       this.setData({
-        likeUrl: "https://i.loli.net/2018/12/02/5c03e99c328e7.png",
-        likeFlag: 0
+        likeFlag: 0,
+        likeText: "喜欢"
       })
       // 取消点赞写入到数据库
       wx.request({
@@ -229,33 +253,33 @@ Page({
   ,
   report: function () {
     var that = this;
-    wx.request({
-      url: app.globalData.reqUrl + 'wxReportById',
-      method: 'POST',
-      data: { id: that.data.ownerID },
-      header: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      success: function (res) {
-        wx.showToast({
-          title: '举报成功',
-          icon: '',
-          duration: 2000
-        });
-        that.setData({
-          visitInfo: res.data
-        })
-      }
-    })
+    Dialog.confirm({
+      title: '举报',
+      message: '确认举报?'
+    }).then(() => {
+      this.setData({
+        reportText: "已举报"
+      })
+      wx.request({
+        url: app.globalData.reqUrl + 'wxReportById',
+        method: 'POST',
+        data: { id: that.data.ownerID },
+        header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        success: function (res) {
+          wx.showToast({
+            title: '举报成功',
+            icon: '',
+            duration: 2000
+          });
+          that.setData({
+            visitInfo: res.data
+          })
+        }
+      })
+    }).catch(() => {
+      // on cancel
+    });
   }
-
-  //跳转到选择模板
-  ,
-  goChooseModel() {
-    wx.navigateTo({
-      url: '../choose/choose'
-    })
-  }
-
-
 
 
 
@@ -325,18 +349,18 @@ Page({
 
 
   //保存修改内容
-
   ,
   saveContent: function (e) {
     var that = this;
-    // 
     var fmData = e.detail.value;
+    // console.log(fmData);
     // pageContent中已有了Image1-5的数据，补齐text数据后，存到数据库
-    this.data.pageContent.text1 = fmData.text1;
-    this.data.pageContent.text2 = fmData.text2;
-    this.data.pageContent.text3 = fmData.text3;
-    this.data.pageContent.text4 = fmData.text4;
-    this.data.pageContent.text5 = fmData.text5;
+    this.data.pageContent[0].text = fmData.text0;
+    this.data.pageContent[1].text = fmData.text1;
+    this.data.pageContent[2].text = fmData.text2;
+    this.data.pageContent[3].text = fmData.text3;
+    this.data.pageContent[4].text = fmData.text4;
+    // console.log(this.data.pageContent);
     wx.request({
       url: app.globalData.reqUrl + 'wxSaveContent',
       method: 'POST',
@@ -353,30 +377,7 @@ Page({
             duration: 2000
           })
         }
-
       }
     })
   }
-
-  //跳转到修改个人信息
-  ,
-  goUpdate: function () {
-    if (this.data.userIsOwner) {
-      wx.navigateTo({
-        url: '../update/update',
-      })
-    }
-  }
-
-  //模板2选择侧边栏
-  ,
-  switchRightTab: function (e) {
-    // 获取item项的id，和数组的下标值
-    let index = parseInt(e.target.dataset.index);
-    // 把点击到的某一项，设为当前index
-    this.setData({
-      thisCurIndex: index
-    })
-  }
-
 })

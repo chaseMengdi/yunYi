@@ -1,6 +1,5 @@
 /* pages/list/list.wxss */
 .myCardView {
   /* 一条border有时会失效，不知为何，上下两条border都设置上区别不是很明显，改日找原因 */
-  border-top: 1rpx solid #efefef;
   border-bottom: 1rpx solid #efefef;
 }
