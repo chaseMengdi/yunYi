@@ -37,7 +37,7 @@ page{
 }
 .VerticalMain{
   background-color: #f1f1f1;
-  height:calc(100vh - 27vh - 44px - 44px);
+  height:calc(100vh - 27vh - 44px);
   width: 80%;
 }
 .myTextarea{
@@ -50,10 +50,9 @@ page{
   height: 44px;
   padding: 7px;
 }
-/* .mySaveButton {
-  height: 30px;
-  width: 30vw;
-} */
+.mySaveButton {
+  width: 30%;
+}
 van-button{
   margin: 0 20px;
 }

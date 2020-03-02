@@ -17,7 +17,7 @@ Page({
     list: [],
     load: true,
     // 用户数据用
-    user: app.user,
+    user: [],
     ownerID: null,
     owner: null,
     visitInfo: null, //存放评论总数，举报总数，点赞总数
@@ -103,12 +103,17 @@ Page({
 
   //用户更改头像或模板后刷新数据
   onShow: function () {
+    this.setData({
+      user: app.user
+    });
     if (this.data.userIsOwner) {
       this.setData({
         "owner.avatar": app.user.avatarUrl,
-        "pageContent.modelID": wx.getStorageSync('modelId')
+        "owner.nickName": app.user.nickName
       })
     }
+    console.log(this.data.user)
+    console.log(this.data.owner)
   },
 
   /**
@@ -355,19 +360,17 @@ Page({
     var fmData = e.detail.value;
     // console.log(fmData);
     // pageContent中已有了Image1-5的数据，补齐text数据后，存到数据库
-    this.data.pageContent[0].text = fmData.text0;
-    this.data.pageContent[1].text = fmData.text1;
-    this.data.pageContent[2].text = fmData.text2;
-    this.data.pageContent[3].text = fmData.text3;
-    this.data.pageContent[4].text = fmData.text4;
+    this.data.pageContent.text1 = fmData.text1;
+    this.data.pageContent.text2 = fmData.text2;
+    this.data.pageContent.text3 = fmData.text3;
+    this.data.pageContent.text4 = fmData.text4;
+    this.data.pageContent.text5 = fmData.text5;
     // console.log(this.data.pageContent);
     wx.request({
       url: app.globalData.reqUrl + 'wxSaveContent',
       method: 'POST',
       data: JSON.stringify(this.data.pageContent),
-      header: {
-        'Content-Type': 'application/json'
-      },
+      header: { 'Content-Type': 'application/json' },
       success: function (res) {
         var theUser = res.data;
         if (theUser != null && theUser != '') {

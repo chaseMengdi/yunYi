@@ -4,7 +4,6 @@
     "pages/list/list",
     "pages/homepage/homepage",
     "pages/mypage/mypage",
-    "pages/choose/choose",
     "pages/update/update"
   ],
   "window": {

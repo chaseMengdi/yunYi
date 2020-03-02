@@ -1,0 +1,41 @@
+<!--pages/mypage/mypage.wxml-->
+
+<!-- 标题栏 -->
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">云忆</view>
+</cu-custom>
+
+<!-- 我的主页 -->
+<navigator open-type="navigate" url="../homepage/homepage?ownerID={{user.userID}}">
+  <view class="bg-white padding margin-tb flex justify-between align-center">
+    <view class="flex justify-between align-center">
+      <view class="cu-avatar lg round" bindtap="ChooseImage" style="background-image:url({{user.avatarUrl}});"></view>
+      <view class="margin-left-sm">
+        <view class="text-lg text-black">{{user.nickName}}</view>
+        <view class="margin-top-xs text-sm">{{user.province}}{{user.city}} {{user.gender == 1 ? "男" : "女"}}</view>
+      </view>
+    </view>
+    <view class="text-gray">
+      我的主页 <text class="cuIcon-right text-xxl"></text>
+    </view>
+  </view>
+</navigator>
+
+<!-- 设置标题 -->
+<view class="cu-bar bg-white solid-bottom">
+  <view class='action'>
+    <text class='cuIcon-titles text-cyan'></text>设置
+  </view>
+</view>
+<!-- 设置表单 -->
+<form bindsubmit='update'>
+  <view class="cu-form-group padding-right-xl padding-tb-xs">
+    <view class="title">头像</view>
+    <view class="cu-avatar lg radius" bindtap="ChooseImage" style="background-image:url({{user.avatarUrl}});"></view>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">昵称</view>
+    <input class="myNicknameInput" name="nickName" value="{{user.nickName}}"></input>
+  </view>
+  <button form-type='submit' class="cu-btn block bg-blue margin lg round">保存</button>
+</form>

@@ -1,0 +1,5 @@
+/* pages/mypage/mypage.wxss */
+
+.myNicknameInput{
+  text-align: right;
+}

@@ -62,7 +62,7 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "pages/mypage/mypage",
 					"pathName": "pages/mypage/mypage",
 					"query": "",

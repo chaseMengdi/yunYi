@@ -9,7 +9,7 @@ Page({
    */
   data: {
     // 当前用户数据
-    user: app.user,
+    user: [],
     // 目前页面展示的列表
     userlist: [],
     // 所有用户数据
@@ -21,7 +21,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var that = this;
     wx.request({
       // 发起请求，返回所有用户数据
@@ -47,6 +47,13 @@ Page({
         }
       }
     })
+  },
+
+  onShow: function () {
+    this.setData({
+      user: app.user
+    });
+    console.log(this.data.user)
   },
 
   homeOnly: function(e) {

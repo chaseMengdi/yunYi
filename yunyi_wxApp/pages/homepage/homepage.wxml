@@ -12,23 +12,19 @@
     <view class="text-xxl">{{owner.nickName}}</view>
   </view>
   <view class="myVisitInfo flex justify-center text-center margin-top">
+    <view class="margin-lr">家乡 {{owner.province}}{{owner.city}}</view>
     <view class="margin-lr">喜欢 {{visitInfo.likeNum}}</view>
     <view class="margin-lr">评论 {{visitInfo.commentNum}}</view>
-    <view class="margin-lr">举报 {{visitInfo.reportNum}}</view>
   </view>
 
 </view>
 <!-- 头部结束 -->
 
 <!-- 按钮栏 -->
-<view class="myButtonBar flex justify-center">
-  <block wx:if="{{userIsOwner}}">
-  </block>
-  <block wx:else>
-    <van-button plain type="info" size="small" round bind:click="Like">{{likeText}}</van-button>
-    <van-button plain type="info" size="small" round bind:click="report">{{reportText}}</van-button>
-    <van-dialog id="van-dialog" />
-  </block>
+<view wx:if="{{!userIsOwner}}" class="myButtonBar flex justify-center">
+  <van-button plain type="info" size="small" round bind:click="Like">{{likeText}}</van-button>
+  <van-button plain type="info" size="small" round bind:click="report">{{reportText}}</van-button>
+  <van-dialog id="van-dialog" />
 </view>
 <!-- 按钮栏结束 -->
 
@@ -40,7 +36,7 @@
     <view class="VerticalBox">
       <!-- 左侧导航 -->
       <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}">
-        <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key="index" bindtap='tabSelect' data-id="{{index}}">
+        <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{list}}" wx:key="index" bindtap='tabSelect' data-id="{{index}}">
           回忆{{item.name}}
         </view>
       </scroll-view>
@@ -55,7 +51,7 @@
               <textarea name="text{{index}}" class="myTextarea padding" disabled='{{!userIsOwner}}' value="{{item.text}}"></textarea>
             </view>
           </view>
-          <button class="mySaveButton cu-btn round lines-blue" form-type='submit'>保存</button>
+          <button wx:if="{{userIsOwner}}" class="mySaveButton cu-btn round lines-blue fr margin-right margin-bottom" form-type='submit'>保存</button>
         </form>
       </scroll-view>
       <!-- 右侧内容结束 -->
@@ -97,12 +93,3 @@
   <!-- 评论tab结束 -->
 </van-tabs>
 <!-- tab栏结束 -->
-
-
-<!--主页内容区域  -->
-<!--根据PageContent中的模板号动态选择模板的wxmL文件  -->
-<!-- <form bindsubmit='saveContent'>
-  <view>
-    <button hidden='{{!userIsOwner}}' type='primary' class="save_btn" size='mini' form-type='submit'>保存</button>
-  </view>
-</form> -->
