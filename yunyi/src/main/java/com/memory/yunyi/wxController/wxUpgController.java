@@ -1,9 +1,7 @@
 package com.memory.yunyi.wxController;
 
-import com.memory.yunyi.entity.PageModel;
-import com.memory.yunyi.entity.VisitInfo;
-import com.memory.yunyi.service.*;
 import com.memory.yunyi.entity.userPageContent;
+import com.memory.yunyi.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +30,7 @@ public class wxUpgController {
      *
      * @param id 用户openid
      * @return
-     */wxSaveContent
+     */
     @PostMapping("/wxGetUpgById")
     public Map<String, Object> get(@RequestParam String id) {
         Map<String, Object> map = new HashMap<String, Object>();
