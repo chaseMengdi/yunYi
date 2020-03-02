@@ -1,7 +1,8 @@
-package com.memory.yunyi.service;
+package com.memory.yunyi.serviceImpl;
 
 import com.memory.yunyi.entity.VisitInfo;
 import com.memory.yunyi.repository.VisitInfoRepository;
+import com.memory.yunyi.service.VisitInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

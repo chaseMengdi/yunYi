@@ -1,7 +1,8 @@
-package com.memory.yunyi.service;
+package com.memory.yunyi.serviceImpl;
 
 import com.memory.yunyi.entity.Log;
 import com.memory.yunyi.repository.LogRepository;
+import com.memory.yunyi.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
