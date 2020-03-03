@@ -10,25 +10,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // 导航用
+    // 聊天框随输入法弹起用
+    InputBottom: 0,
+    // 垂直导航用
     TabCur: 0,
     MainCur: 0,
     VerticalNavTop: 0,
     list: [],
-    load: true,
-    // 用户数据用
-    user: [],
+    // 存储用户数据用
+    user: null, //登录用户信息
+    pageContent: null, //更新本页内容：image1-5，text1-5
     ownerID: null,
-    owner: null,
+    owner: null, //本页用户信息
     visitInfo: null, //存放评论总数，举报总数，点赞总数
     comment: null, //存放主页的评论列表
-    pageContent: null,
-    likeFlag: 0,
-    likeText: "喜欢",
-    reportText: "举报",
+    // 判断用flag及组件内文字
+    load: true, //页面加载完毕判断flag
     userIsOwner: false, //判断登录用户是否为主页主人
-    thisCurIndex: 0, 
-    blankComment: "" //发送评论后清空
+    likeFlag: 0, //判断是否已喜欢,
+    reportFlag: 0,  //判断是否已经举报
+    likeText: "点赞", //喜欢按钮文字，点赞/已点赞
+    reportText: "举报", //举报按钮文字，举报/已举报
+    blankComment: "" //评论text内value，发送评论后清空
   },
 
   /**
@@ -36,6 +39,7 @@ Page({
    */
   //加载主页时读取所需要的pageContent,owner,visitinfo,comment
   onLoad: function (e) {
+    // 页面内容未加载完成前先显示加载中弹窗
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -76,6 +80,7 @@ Page({
       method: 'POST',
       success: function (res) {
         var result = res.data;
+        console.log("该用户的主页信息获取成功");
         console.log(result);
         if (result == undefined) {
           var text = '获取数据失败' + res.data.errMsg;
@@ -85,11 +90,7 @@ Page({
             duration: 2000
           });
         } else {
-          // for (let i = 0; i < 5; i++) {
-          //   list[i].image = result.content[i].image;
-          //   list[i].text = result.content[i].text;
-          // }
-          list[0].image=result.content.image1;
+          list[0].image = result.content.image1;
           list[0].text = result.content.text1;
           list[1].image = result.content.image2;
           list[1].text = result.content.text2;
@@ -102,7 +103,7 @@ Page({
           that.setData({
             owner: result.user,
             visitInfo: result.visitInfo,
-            comment: result.comment, 
+            comment: result.comment,
             pageContent: result.content,
             list: list
           })
@@ -122,18 +123,19 @@ Page({
         "owner.nickName": app.user.nickName
       })
     }
-    console.log(this.data.user)
-    console.log(this.data.owner)
+    // console.log(this.data.user)
+    // console.log(this.data.owner)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    // 页面渲染完成后隐藏“加载中”弹窗
     wx.hideLoading()
   },
 
-  // 选择tab
+  // 垂直导航选择tab
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id,
@@ -206,7 +208,7 @@ Page({
           that.data.comment = newComment.concat(that.data.comment);
           that.setData({
             comment: that.data.comment,
-            blankComment:""
+            blankComment: ""
           });
         } else {
           wx.showToast({
@@ -217,23 +219,22 @@ Page({
         }
       }
     })
-  }
+  },
 
   //响应点赞，重复点击可取消
-  ,
   Like: function () {
     var that = this;
     // likeflag为0则表示未点赞，先改界面数据
     if (this.data.likeFlag == 0) {
       this.setData({
         likeFlag: 1,
-        likeText: "已喜欢"
+        likeText: "已点赞"
       })
       // 点赞写入到数据库
       wx.request({
         url: app.globalData.reqUrl + 'wxLikeById',
         method: 'POST',
-        data: {id: that.data.ownerID},
+        data: { id: that.data.ownerID },
         header: { 'Content-Type': 'application/x-www-form-urlencoded' },
         success: function (res) {
           that.setData({
@@ -262,10 +263,9 @@ Page({
         }
       })
     }
-  }
+  },
 
-  // 投诉功能
-  ,
+  // 举报功能
   report: function () {
     var that = this;
     Dialog.confirm({
@@ -273,6 +273,7 @@ Page({
       message: '确认举报?'
     }).then(() => {
       this.setData({
+        reportFlag: 1,
         reportText: "已举报"
       })
       wx.request({
@@ -293,13 +294,11 @@ Page({
       })
     }).catch(() => {
       // on cancel
+      // console.log("取消举报")
     });
-  }
-
-
+  },
 
   // 接受用户图片 
-  ,
   pickImage: function (e) {
     var that = this
     //微信API选择图片
@@ -309,62 +308,86 @@ Page({
         count: 1, // 最多可以选择的图片张数，默认1
         sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
         sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
-        success: ret => {
-          var filePath = ret.tempFilePaths[0];
-          console.log("图片临时网址，小程序关闭后将会被销毁：" + filePath);
-          //微信API将图片上传到图床
-          //返回网络地址
+        success: res => {
+          var filePath = res.tempFilePaths[0];
+          /**
+           * 测试上传图片临时网址后显示
+           */
+          // console.log("图片临时网址，小程序关闭后将会被销毁：" + filePath);
+          // var listImage = "list[" + (e.target.id) + "].image"
+          // // 传来的参数e.target.id是字符，先转换成数值型，最后加成一个字符串"pageContent.image1"
+          // var pageContentImg = "pageContent.image" + (parseInt(e.target.id) + 1)
+          // console.log(pageContentImg)
+          // that.setData({
+          //   [listImage]: filePath,
+          //   [pageContentImg]: filePath
+          // });
+          // console.log(that.data.list[0].image)
+          // console.log(that.data.pageContent.image1)
+          /**
+           * 微信API将图片上传到图床
+           * 返回网络地址
+           */
           wx.uploadFile({
-            url: app.globalData.imgUrl,
+            url: app.globalData.imageUrl + "uploadImg",
             filePath: filePath,
             name: 'file',
             success: res => {
-              //逆向转换JSON字符串后抽取网址
-              console.log("图片网络地址：" + res.data)
-              console.log("图片上传成功！")
-              console.log(e.target.id)
-              console.log(JSON.parse(res.data).data.url)
-              // 通过图片组件的Id不同来修改不同的数据
-              switch (e.target.id) {
-                case '1':
-                  that.setData({
-                    "pageContent.image1": JSON.parse(res.data).data.url
-                  });
-                  break;
-                case '2':
-                  that.setData({
-                    "pageContent.image2": JSON.parse(res.data).data.url
-                  });
-                  break;
-                case '3':
-                  that.setData({
-                    "pageContent.image3": JSON.parse(res.data).data.url
-                  });
-                  break;
-                case '4':
-                  that.setData({
-                    "pageContent.image4": JSON.parse(res.data).data.url
-                  });
-                  break;
-                case '5':
-                  that.setData({
-                    "pageContent.image5": JSON.parse(res.data).data.url
-                  });
-                  break;
-              }
+              // console.log("当前图片id" + e.target.id + "图片网络地址：" + res.data)
+              // list和pageContent都要修改
+              var listImage = "list[" + e.target.id + "].image"
+              var pageContentImg = "pageContent.image" + (parseInt(e.target.id) + 1)
+              that.setData({
+                [listImage]: res.data,
+                [pageContentImg]: res.data
+              });
             }
           })
-
         }
       })
     }
+  },
 
-  }
-
-
+  // 删除已上传图片
+  delImg: function (e) {
+    console.log(e.target)//有时候点中了，这个函数也运行了，但是传来的id是空的，迷惑啊
+    wx.showModal({
+      title: '删除图片',
+      content: '确认删除这张回忆?',
+      success: res => {
+        if (res.confirm) {
+          var listImage = "list[" + e.target.id + "].image"
+          var pageContentImg = "pageContent.image" + (parseInt(e.target.id) + 1)
+          this.setData({
+            [listImage]: null,
+            [pageContentImg]: null
+          })
+        }
+      }
+    })
+    /**
+     * 点确认也是取消，不知道啥bug
+     */
+    // var that = this;
+    // Dialog.confirm({
+    //   title: '删除图片',
+    //   message: '确认删除这张回忆?'
+    // }).then(() => {
+    //   var listImage = "list[" + e.target.id + "].image"
+    //   var pageContentImg = "pageContent.image" + (parseInt(e.target.id) + 1)
+    //   that.setData({
+    //     [listImage]: null,
+    //     [pageContentImg]: null
+    //   })
+    //   console.log("list"+that.data.list[0].image)
+    //   console.log("list"+that.data.pageContent.image1)
+    // }).catch(() => {
+    //   // on cancel
+    //   console.log("取消"+that.data.list[0].image)
+    // });
+  },
 
   //保存修改内容
-  ,
   saveContent: function (e) {
     var that = this;
     var fmData = e.detail.value;
@@ -392,5 +415,17 @@ Page({
         }
       }
     })
-  }
+  },
+
+  // 聊天框随输入法弹起
+  InputFocus(e) {
+    this.setData({
+      InputBottom: e.detail.height
+    })
+  },
+  InputBlur(e) {
+    this.setData({
+      InputBottom: 0
+    })
+  },
 })

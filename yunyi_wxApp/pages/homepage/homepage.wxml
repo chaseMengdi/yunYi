@@ -1,4 +1,4 @@
-<!--pages/homepage/homepage.wxml-->
+<!-- pages/homepage/homepage.wxml -->
 
 <!-- 头部 -->
 <view class="myHead bg-gradual-blue">
@@ -16,15 +16,15 @@
     <view class="margin-lr">喜欢 {{visitInfo.likeNum}}</view>
     <view class="margin-lr">评论 {{visitInfo.commentNum}}</view>
   </view>
-
 </view>
 <!-- 头部结束 -->
 
 <!-- 按钮栏 -->
 <view wx:if="{{!userIsOwner}}" class="myButtonBar flex justify-center">
-  <van-button plain type="info" size="small" round bind:click="Like">{{likeText}}</van-button>
-  <van-button plain type="info" size="small" round bind:click="report">{{reportText}}</van-button>
-  <van-dialog id="van-dialog" />
+  <button class="cu-btn round lines-blue" disabled="{{reportFlag? true: false}}" bindtap="report">{{reportText}}</button>
+  <button class="cu-btn round {{likeFlag? 'bg-blue': 'lines-blue'}}" bindtap="Like">{{likeText}}</button>
+  <!-- <van-button plain type="info" size="small" round bind:click="Like">{{likeText}}</van-button>
+  <van-button plain type="info" size="small" round bind:click="report">{{reportText}}</van-button> -->
 </view>
 <!-- 按钮栏结束 -->
 
@@ -42,16 +42,38 @@
       </scroll-view>
       <!-- 左侧导航结束 -->
       <!-- 右侧内容 -->
-      <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="%" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+      <scroll-view class="VerticalMain {{userIsOwner? 'ownerHeight': 'visitHeight'}}" scroll-y scroll-with-animation style="%" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
         <form bindsubmit='saveContent'>
           <view class="padding" wx:for="{{list}}" wx:key="index" id="main-{{index}}">
             <view class='bg-white'>
-              <!--  hidden="{{item.image ? false : true}}"   -->
-              <image id="index" src="{{item.image}}" mode="widthFix" bindtap="pickImage"></image>
-              <textarea name="text{{index}}" class="myTextarea padding" disabled='{{!userIsOwner}}' value="{{item.text}}"></textarea>
+              <!-- 图片栏:如果存在图片就显示，如果不存在但是是主人就显示上传图标，否则隐藏 -->
+              <block wx:if="{{item.image}}">
+                <view class="myCu-tagView">
+                  <image id="{{index}}" bindtap="pickImage" src="{{item.image}}" mode="widthFix"></image>
+                  <!-- 如果是主人显示删除按钮（有bug：有时候点中了但是传不出去id） -->
+                  <block wx:if="{{userIsOwner}}">
+                    <view id="{{index}}" bindtap="delImg" class="myCu-tag">
+                      <text class="cuIcon-close"></text>
+                    </view>
+                  </block>
+                </view>
+              </block>
+              <!-- 如果不存在…… -->
+              <block wx:elif="{{userIsOwner}}">
+                <view class="myImgUploadView">
+                  <view id="{{index}}" class="myImgUpload flex justify-center align-center" bindtap="pickImage">
+                    <text class="cuIcon-cameraadd text-grey"> 上传回忆</text>
+                  </view>
+                </view>
+              </block>
+              <!-- 文字输入框 -->
+              <textarea name="text{{index+1}}" class="myTextarea padding" disabled='{{!userIsOwner}}' auto-height='true' value="{{item.text}}" placeholder="{{item.text? '': '在这里留下你的回忆~'}}" placeholder-class="text-gray"></textarea>
             </view>
           </view>
-          <button wx:if="{{userIsOwner}}" class="mySaveButton cu-btn round lines-blue fr margin-right margin-bottom" form-type='submit'>保存</button>
+          <!-- 保存页面内容按钮 -->
+          <button wx:if="{{userIsOwner}}" class="mySaveButton cu-btn round lines-blue fr margin-right margin-bottom" form-type='submit'>
+            保存
+          </button>
         </form>
       </scroll-view>
       <!-- 右侧内容结束 -->
@@ -60,36 +82,40 @@
   <!-- 回忆tab结束 -->
   <!-- 评论tab -->
   <van-tab title="评论">
-    <!-- 评论列表 -->
-    <view class="cu-list menu-avatar comment solids-top">
-      <view class="cu-item" wx:for="{{comment}}" wx:key="index">
-        <view class="cu-avatar round" style="background-image:url({{item.avatarUrl}});"></view>
-        <view class="content">
-          <view class="text-grey">{{item.commenterName}}</view>
-          <view class="margin-top-sm text-gray text-content text-df">
-            {{item.text}}
-          </view>
-          <view class="flex justify-between">
-            <view class="text-gray text-df">{{item.time}}</view>
+    <!-- 无评论显示提示 -->
+    <block wx:if="{{comment.length == 0}}">
+      <view class="myNoCommentTip text-gray padding-top-xl {{userIsOwner? 'ownerHeight': 'visitHeight'}}">还没有评论呢，来留下第一个评论吧^_^</view>
+    </block>
+    <!-- 有评论显示评论列表 -->
+    <block wx:else>
+      <scroll-view scroll-y class="{{userIsOwner? 'ownerHeight': 'visitHeight'}}">
+        <view class="myCommentList cu-list menu-avatar comment solids-top">
+          <view class="cu-item" wx:for="{{comment}}" wx:key="index">
+            <view class="cu-avatar round" style="background-image:url({{item.avatarUrl}});"></view>
+            <view class="content">
+              <view class="text-grey">{{item.commenterName}}</view>
+              <view class="margin-top-sm text-gray text-content text-df">{{item.text}}</view>
+              <view class="text-gray text-df">{{item.time}}</view>
+            </view>
           </view>
         </view>
-      </view>
-    </view>
+      </scroll-view>
+    </block>
     <!-- 发布评论 -->
     <form bindsubmit='comment'>
-      <view class="cu-bar input">
+      <view class="cu-bar foot input {{InputBottom!=0?'cur':''}}" style="bottom:{{InputBottom}}px">
         <view class="cu-avatar round" style="background-image:url({{user.avatarUrl}});"></view>
-        <view class="action">
-          <text class="cuIcon-roundaddfill text-grey"></text>
-        </view>
-        <input class="solid-bottom" value="{{blankComment}}" maxlength="300" cursor-spacing="10" name="text"></input>
+        <input name="text" value="{{blankComment}}" class="solid-bottom" focus="{{true}}" bindfocus="InputFocus" bindblur="InputBlur" adjust-position="{{false}}" maxlength="300" cursor-spacing="10"></input>
         <view class="action">
           <text class="cuIcon-emojifill text-grey"></text>
         </view>
-        <button class="cu-btn bg-green shadow-blur" form-type="submit">发送</button>
+        <button form-type="submit" class="cu-btn bg-green shadow">发送</button>
       </view>
     </form>
   </van-tab>
   <!-- 评论tab结束 -->
 </van-tabs>
 <!-- tab栏结束 -->
+
+<!-- 删除用到的弹窗 -->
+<van-dialog id="van-dialog" />

@@ -53,7 +53,7 @@ Page({
     this.setData({
       user: app.user
     });
-    console.log(this.data.user)
+    // console.log(this.data.user)
   },
 
   homeOnly: function(e) {

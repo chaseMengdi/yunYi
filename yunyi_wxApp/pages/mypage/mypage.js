@@ -13,11 +13,6 @@ Page({
 
   // 保存修改
   update: function(e) {
-    //补全所需的3个参数
-    // e.detail.value.openId=this.data.user.userID;
-    // if (e.detail.value.avatarUrl !== undefined  ){
-    //   this.data.user.avatarUrl = e.detail.value.avatarUrl;
-    // }
     if (e.detail.value.nickName !== undefined  ) {
       this.data.user.nickName = e.detail.value.nickName ;
     }
@@ -49,16 +44,16 @@ Page({
       sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
       success: (res) => {
         var filePath = res.tempFilePaths[0];
-        console.log(filePath)
-        that.setData({
-          "user.avatarUrl": filePath
-        })
+        // console.log(filePath)
+        // that.setData({
+        //   "user.avatarUrl": filePath
+        // })
         wx.uploadFile({
-          url: app.globalData.imgUrl,
+          url: app.globalData.imageUrl + "uploadImg",
           filePath: filePath,
           name: 'file',
           success: res => {
-            console.log(res),
+            // console.log(res),
               that.setData({
                 "user.avatarUrl": res.data
               })
@@ -75,7 +70,7 @@ Page({
     this.setData({
       user: app.user
     }); 
-    console.log(this.data.user)
+    // console.log(this.data.user)
   },
 
   /**

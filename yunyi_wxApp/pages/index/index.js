@@ -46,7 +46,7 @@ Page({
                 app.user.nickName = theUser.nickName;
                 app.user.gender = theUser.gender;
                 app.user.avatarUrl = theUser.avatarUrl;
-                // console.log(app.user);
+                // console.log("登录用户为" + JSON.stringify(app.user));
                 // 弹出提示框
                 wx.showToast({
                   title: '登录成功',

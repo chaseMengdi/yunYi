@@ -2,7 +2,6 @@
 page{
   background-color: white;
 }
-
 .VerticalNav.nav {
   width: 200rpx;
   white-space: initial;
@@ -37,22 +36,69 @@ page{
 }
 .VerticalMain{
   background-color: #f1f1f1;
-  height:calc(100vh - 27vh - 44px);
   width: 80%;
-}
-.myTextarea{
-  width: 100%;
 }
 .myHead{
   height: 27vh;
 }
+/* 按钮栏高度与tab栏一致 */
 .myButtonBar{
   height: 44px;
   padding: 7px;
 }
+.myButtonBar button{
+  height: 30px;
+  width: 20%;
+  margin: 0 10px;
+}
+/* 直接给.myImgUpload加margin，只有顶部的margin会失效，不知道什么bug，只能用外层的view的padding挤 */
+.myImgUploadView{
+  padding: 5rpx 5rpx 0 5rpx;
+}
+.myImgUpload{
+  width: 100%;
+  height: 400rpx;
+  border: 5rpx dashed #eee;
+}
+.myTextarea{
+  width: 100%;
+  min-height: 300rpx;
+}
 .mySaveButton {
   width: 30%;
 }
-van-button{
-  margin: 0 20px;
+/* 图片上的叉叉 */
+.myCu-tagView {
+  position: relative;
 }
+.myCu-tag {
+	position: absolute;
+	right: 0;
+	top: 0;
+	border-bottom-left-radius: 6rpx;
+	padding: 6rpx 12rpx;
+	height: auto;
+	background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+/* 为了不被fixed的聊天框挡住评论内容 */
+.myCommentList{
+  padding-bottom: 100rpx;
+}
+.myNoCommentTip {
+  width: 100%;
+  text-align: center;
+}
+/* 
+  根据是否主人（即是否有按钮栏给scroll-view设置不同高度）
+  全屏高度-头部高度-按钮栏-tab栏
+  必须要加空格，否则失效
+*/
+.ownerHeight{
+  height:calc(100vh - 27vh - 44px);
+}
+.visitHeight {
+  height: calc(100vh - 27vh - 44px - 44px);
+}
+
+
