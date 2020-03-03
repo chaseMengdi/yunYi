@@ -66,7 +66,8 @@ Page({
   onLoad: function (options) {
     this.setData({
       user: app.user
-    });
+    }); 
+    console.log(this.data.user)
   },
 
   /**
