@@ -85,10 +85,20 @@ Page({
             duration: 2000
           });
         } else {
-          for (let i = 0; i < 5; i++) {
-            list[i].image = result.content[i].image;
-            list[i].text = result.content[i].text;
-          }
+          // for (let i = 0; i < 5; i++) {
+          //   list[i].image = result.content[i].image;
+          //   list[i].text = result.content[i].text;
+          // }
+          list[0].image=result.content.image1;
+          list[0].text = result.content.text1;
+          list[1].image = result.content.image2;
+          list[1].text = result.content.text2;
+          list[2].image = result.content.image3;
+          list[2].text = result.content.text3;
+          list[3].image = result.content.image4;
+          list[3].text = result.content.text4;
+          list[4].image = result.content.image5;
+          list[4].text = result.content.text5;
           that.setData({
             owner: result.user,
             visitInfo: result.visitInfo,
@@ -305,12 +315,12 @@ Page({
           //微信API将图片上传到图床
           //返回网络地址
           wx.uploadFile({
-            url: 'https://sm.ms/api/v2/upload',
+            url: app.globalData.imgUrl,
             filePath: filePath,
-            name: 'smfile',
+            name: 'file',
             success: res => {
               //逆向转换JSON字符串后抽取网址
-              console.log(res)
+              console.log("图片网络地址：" + res.data)
               console.log("图片上传成功！")
               console.log(e.target.id)
               console.log(JSON.parse(res.data).data.url)

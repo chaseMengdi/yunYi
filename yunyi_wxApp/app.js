@@ -3,8 +3,9 @@ App({
   globalData: {
     userInfo: null,
     imgUrl: 'http://203.195.156.107:8080/uploadImg',
-    reqUrl: 'http://203.195.156.107:8080/'
-    // reqUrl: 'http://localhost:8080/'
+    // imgUrl: 'https://sm.ms/v2/api/upload',
+    // reqUrl: 'http://203.195.156.107:8080/'
+    reqUrl: 'http://localhost:8080/'
   },
   user: {
 avatarUrl:"https://wx.qlogo.cn/mmopen/vi_32/vIPZ4FLhrA7IAme13kU0w92ufsqGLx65SuFDWhQOR5iayPu8P7BYeNPc7rBiaj7C3TuGrHbygCXSXq0Dy6jO6bibA/132",

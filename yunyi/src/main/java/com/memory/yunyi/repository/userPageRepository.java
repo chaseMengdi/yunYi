@@ -33,6 +33,6 @@ public interface userPageRepository extends JpaRepository<userPageContent, Integ
      * @return
      */
     @Query(value = "SELECT a FROM userPageContent a WHERE a.userID IN (" +
-            "SELECT b.openId FROM User b WHERE b.city=?1)")
+            "SELECT b.userID FROM User b WHERE b.city=?1)")
     List<userPageContent> pageListByHometown(String city);
 }

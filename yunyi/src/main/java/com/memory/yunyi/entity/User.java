@@ -1,12 +1,14 @@
 package com.memory.yunyi.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 public class User implements Comparable<User> {
     @Id
-    private String openId;
+    @Column(name = "user_id")
+    private String userID;
     private String nickName;
     private Integer gender;
     private String avatarUrl;
@@ -19,8 +21,8 @@ public class User implements Comparable<User> {
         super();
     }
 
-    public User(String openId, String nickName, Integer gender, String avatarUrl, String province, String city) {
-        this.openId = openId;
+    public User(String userID, String nickName, Integer gender, String avatarUrl, String province, String city) {
+        this.userID = userID;
         this.nickName = nickName;
         this.gender = gender;
         this.avatarUrl = avatarUrl;
@@ -29,12 +31,12 @@ public class User implements Comparable<User> {
         this.status = "normal";
     }
 
-    public String getOpenId() {
-        return openId;
+    public String getUserID() {
+        return userID;
     }
 
     public void setOpenId(String openId) {
-        this.openId = openId;
+        this.userID = openId;
     }
 
     public String getNickName() {
@@ -88,7 +90,7 @@ public class User implements Comparable<User> {
     @Override
     public String toString() {
         return "User{" +
-                "openId='" + openId + '\'' +
+                "openId='" + userID + '\'' +
                 ", nickName='" + nickName + '\'' +
                 ", gender=" + gender +
                 ", avatarUrl='" + avatarUrl + '\'' +
@@ -105,6 +107,6 @@ public class User implements Comparable<User> {
      */
     @Override
     public int compareTo(User other) {
-        return this.openId.compareTo(other.getOpenId());
+        return this.userID.compareTo(other.getUserID());
     }
 }

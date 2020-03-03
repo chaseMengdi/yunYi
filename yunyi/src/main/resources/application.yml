@@ -1,4 +1,16 @@
+#windwos上传文件存放路径
+upload-path: D:/upload/
+
+##linux上传文件存放路径
+#upload-path: /root/upload/
+
 spring:
+    servlet:
+        multipart:
+          #上传文件总得最大值
+          max-request-size: 10MB
+          #上传单个文件最大值
+          max-file-size: 10MB
     datasource:
         driver-class-name: com.mysql.jdbc.Driver
         url: jdbc:mysql://203.195.156.107:3306/yunYi?useSSL=false

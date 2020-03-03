@@ -1,7 +1,8 @@
-package com.memory.yunyi.service;
+package com.memory.yunyi.serviceImpl;
 
 import com.memory.yunyi.entity.Echarts;
 import com.memory.yunyi.repository.EchartsRepository;
+import com.memory.yunyi.service.EchartsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

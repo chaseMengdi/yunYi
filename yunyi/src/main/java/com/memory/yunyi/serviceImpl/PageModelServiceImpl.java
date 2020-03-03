@@ -1,7 +1,8 @@
-package com.memory.yunyi.service;
+package com.memory.yunyi.serviceImpl;
 
 import com.memory.yunyi.entity.PageModel;
 import com.memory.yunyi.repository.PageModelRepository;
+import com.memory.yunyi.service.PageModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

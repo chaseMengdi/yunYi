@@ -16,17 +16,19 @@ public class Comment {
     private String ownerID;
     private String text;
     private String time;
+    private String avatarUrl;
 
     public Comment() {
         super();
     }
 
-    public Comment(String commenterID, String commenterName, String ownerID, String text, String time) {
+    public Comment(String commenterID, String commenterName, String ownerID, String text, String time, String avatarUrl) {
         this.commenterID = commenterID;
         this.commenterName = commenterName;
         this.ownerID = ownerID;
         this.text = text;
         this.time = time;
+        this.avatarUrl=avatarUrl;
     }
 
     public Integer getCmtID() {
@@ -75,5 +77,13 @@ public class Comment {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

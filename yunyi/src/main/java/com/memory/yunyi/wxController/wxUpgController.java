@@ -1,12 +1,15 @@
 package com.memory.yunyi.wxController;
+import com.alibaba.fastjson.JSON;
+import com.memory.yunyi.utils.util;
 
-import com.memory.yunyi.entity.PageModel;
-import com.memory.yunyi.entity.VisitInfo;
-import com.memory.yunyi.service.*;
+import com.alibaba.fastjson.JSONObject;
 import com.memory.yunyi.entity.userPageContent;
+import com.memory.yunyi.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +35,7 @@ public class wxUpgController {
      *
      * @param id 用户openid
      * @return
-     */wxSaveContent
+     */
     @PostMapping("/wxGetUpgById")
     public Map<String, Object> get(@RequestParam String id) {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -68,5 +71,16 @@ public class wxUpgController {
         //新模板使用人数+1，再讲传来的页面内容模板号更新到数据库
         pageModelService.inc(u.getModelID());
         pageService.setModelId(u.getModelID(), u.getUserID());
+    }
+
+    /**
+     * 上传图片接口
+     * @param file
+     * @return
+     */
+    @RequestMapping("/uploadImg")
+    public String upLoadImg(@RequestParam("file") MultipartFile file) throws UnknownHostException {
+        String uploadPath = util.uploadImg(file);
+        return uploadPath;
     }
 }
