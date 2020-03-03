@@ -315,12 +315,12 @@ Page({
           //微信API将图片上传到图床
           //返回网络地址
           wx.uploadFile({
-            url: 'https://sm.ms/api/v2/upload',
+            url: app.globalData.imgUrl,
             filePath: filePath,
-            name: 'smfile',
+            name: 'file',
             success: res => {
               //逆向转换JSON字符串后抽取网址
-              console.log(res)
+              console.log("图片网络地址：" + res.data)
               console.log("图片上传成功！")
               console.log(e.target.id)
               console.log(JSON.parse(res.data).data.url)
