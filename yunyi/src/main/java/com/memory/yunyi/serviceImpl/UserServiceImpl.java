@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(User user) {
-        userRepository.update(user.getOpenId(), user.getNickName(), user.getAvatarUrl());
+        userRepository.update(user.getUserID(), user.getNickName(), user.getAvatarUrl());
     }
 
     @Override

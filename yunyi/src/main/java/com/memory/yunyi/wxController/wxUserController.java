@@ -109,12 +109,12 @@ public class wxUserController {
             userService.reg(regUser);
 
             //用户注册时往visitInfo表添加默认数据
-            VisitInfo v = new VisitInfo(regUser.getOpenId(), 0, 0, 0, 0);
+            VisitInfo v = new VisitInfo(regUser.getUserID(), 0, 0, 0, 0);
             v.setUser(regUser);
             visitInfoService.add(v);
             //往pageContent表加入默认数据，默认模板号1
             userPageContent page = new userPageContent();
-            page.setUserID(regUser.getOpenId());
+            page.setUserID(regUser.getUserID());
             page.setModelID(1);
             page.setModelID(1);
             pageService.renew(page);
@@ -135,6 +135,7 @@ public class wxUserController {
      */
     @PostMapping("/wxUpdate")
     public void update(@RequestBody User user) {
+        System.err.println(user.toString());
         userService.update(user);
     }
 

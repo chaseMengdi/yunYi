@@ -85,8 +85,8 @@
 				<tbody id="record">
 				<tr class="text-c" th:each="User : ${users}">
 					<td><input type="checkbox" value="1" name=""/></td>
-					<td th:text="${User.getOpenId()}">1</td>
-					<td><a th:href="@{'/changeUserHome/'+${User.getOpenId()}}"><u><label
+					<td th:text="${User.getUserID()}">1</td>
+					<td><a th:href="@{'/changeUserHome/'+${User.getUserID()}}"><u><label
 							th:text="${User.getNickName()}"></label></u></a></td>
 					<td th:if="${User.getGender()} eq 0">未知</td>
 					<td th:if="${User.getGender()} eq 1">男</td>
@@ -96,9 +96,9 @@
 					<td th:text="${User.getStatus()}">正常</td>
 					<td class="td-manage">
 						<!--<button type="button" class="btn btn-danger">封禁</button>-->
-						<a th:href="@{'/user/stop/'+${User.getOpenId()} }" class="btn btn-danger">封禁</a>
+						<a th:href="@{'/user/stop/'+${User.getUserID()} }" class="btn btn-danger">封禁</a>
 						<!--<button type="button" class="btn btn-success">解封</button>-->
-						<a th:href="@{'/user/recovery/'+${User.getOpenId()} }" class="btn btn-success">解封</a>
+						<a th:href="@{'/user/recovery/'+${User.getUserID()} }" class="btn btn-success">解封</a>
 					</td>
 				</tr>
 				</tbody>

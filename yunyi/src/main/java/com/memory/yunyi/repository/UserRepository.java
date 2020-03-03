@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      */
     @Modifying
     @Transactional
-    @Query("UPDATE User a SET a.status='stop' WHERE a.openId=?1")
+    @Query("UPDATE User a SET a.status='stop' WHERE a.userID=?1")
     void stopByID(String id);
 
     /**
@@ -27,7 +27,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      */
     @Modifying
     @Transactional
-    @Query("UPDATE User a SET a.status='normal' WHERE a.openId=?1")
+    @Query("UPDATE User a SET a.status='normal' WHERE a.userID=?1")
     void recoverByID(String id);
 
     /**
@@ -45,7 +45,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * @param openId
      * @return
      */
-    @Query(value = "SELECT * FROM user WHERE open_id=?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM user WHERE user_id=?1", nativeQuery = true)
     User findByOpenId(String openId);
 
     /**
@@ -57,7 +57,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      */
     @Modifying
     @Transactional
-    @Query("UPDATE User a SET a.nickName=?2 ,a.avatarUrl=?3 WHERE a.openId=?1")
+    @Query(value = "UPDATE user a SET a.nick_name=?2 ,a.avatar_url=?3 WHERE a.user_id=?1",nativeQuery = true)
     void update(String id, String name, String avatar);
 
     /**
@@ -66,6 +66,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * @param openid
      * @return
      */
-    @Query(value = "SELECT COUNT(*) FROM user WHERE open_id=?1", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM user WHERE user_id=?1", nativeQuery = true)
     Integer existsOrNotByOpenId(String openid);
 }
