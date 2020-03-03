@@ -2,7 +2,8 @@
 App({
   globalData: {
     userInfo: null,
-    imgUrl: 'https://sm.ms/v2/api/upload',
+    imgUrl: 'http://203.195.156.107:8080/uploadImg',
+    // imgUrl: 'https://sm.ms/v2/api/upload',
     // reqUrl: 'http://203.195.156.107:8080/'
     reqUrl: 'http://localhost:8080/'
   },

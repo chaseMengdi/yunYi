@@ -13,8 +13,16 @@ Page({
 
   // 保存修改
   update: function(e) {
+    //补全所需的3个参数
+    // e.detail.value.openId=this.data.user.userID;
+    // if (e.detail.value.avatarUrl !== undefined  ){
+    //   this.data.user.avatarUrl = e.detail.value.avatarUrl;
+    // }
+    if (e.detail.value.nickName !== undefined  ) {
+      this.data.user.nickName = e.detail.value.nickName ;
+    }
     var that = this;
-    this.data.user.nickName = e.detail.value.nickName;
+    console.log("传送数据" + JSON.stringify(that.data.user))
     wx.request({
       url: app.globalData.reqUrl + 'wxUpdate',
       method: 'POST',
@@ -48,11 +56,11 @@ Page({
         wx.uploadFile({
           url: app.globalData.imgUrl,
           filePath: filePath,
-          name: 'smfile',
+          name: 'file',
           success: res => {
             console.log(res),
               that.setData({
-                "user.avatarUrl": JSON.parse(res.data).data.url
+                "user.avatarUrl": res.data
               })
           }
         })

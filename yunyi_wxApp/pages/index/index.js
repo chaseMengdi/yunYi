@@ -40,7 +40,7 @@ Page({
                 })
               }
               else if (theUser != null && theUser != '') {
-                app.user.userID = theUser.openId;
+                app.user.userID = theUser.userID;
                 app.user.province = theUser.province;
                 app.user.city = theUser.city;
                 app.user.nickName = theUser.nickName;
