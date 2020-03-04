@@ -31,7 +31,7 @@
 <form bindsubmit='update'>
   <view class="cu-form-group padding-right-xl padding-tb-xs">
     <view class="title">头像</view>
-    <view class="cu-avatar lg radius" bindtap="ChooseImage" style="background-image:url({{user.avatarUrl}});"></view>
+    <view class="cu-avatar lg radius" bindtap="ChooseImage" style="background-image:url({{setAvatar}});"></view>
   </view>
   <view class="cu-form-group">
     <view class="title">昵称</view>

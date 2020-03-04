@@ -8,22 +8,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user: []
+    user: [],
+    setAvatar: null
   },
 
   // 保存修改
-  update: function(e) {
-    if (e.detail.value.nickName !== undefined  ) {
-      this.data.user.nickName = e.detail.value.nickName ;
+  update: function (e) {
+    if (e.detail.value.nickName !== undefined) {
+      this.setData({
+        "user.nickName": e.detail.value.nickName,
+        "user.avatarUrl": this.data.setAvatar
+      })
     }
     var that = this;
-    console.log("传送数据" + JSON.stringify(that.data.user))
+    // console.log("传送数据" + JSON.stringify(that.data.user))
     wx.request({
       url: app.globalData.reqUrl + 'wxUpdate',
       method: 'POST',
       data: JSON.stringify(that.data.user),
-      header: {'Content-Type': 'application/json'},
-      success: function(res) {
+      header: { 'Content-Type': 'application/json' },
+      success: function (res) {
         wx.showToast({
           title: '更改成功',
           icon: '',
@@ -54,9 +58,9 @@ Page({
           name: 'file',
           success: res => {
             // console.log(res),
-              that.setData({
-                "user.avatarUrl": res.data
-              })
+            that.setData({
+              setAvatar: res.data
+            })
           }
         })
       }
@@ -68,56 +72,56 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      user: app.user
-    }); 
-    // console.log(this.data.user)
+      user: app.user,
+      setAvatar: app.user.avatarUrl
+    });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })
