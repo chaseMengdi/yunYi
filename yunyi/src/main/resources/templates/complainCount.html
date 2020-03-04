@@ -51,7 +51,10 @@
 					<td th:text="${Users.getUserID()}">1</td>
                     <td><a th:href="@{'/changeUserHome/'+${Users.getUserID()}}"><u><label
                             th:text="${Users.getUser().getNickName()}"></label></u></a></td>
-                    <td th:text="${Users.getUser().getGender()}">男</td>
+<!--                    <td th:text="${Users.getUser().getGender()}">男</td>-->
+					<td th:if="${Users.getUser().getGender()} eq 0">未知</td>
+					<td th:if="${Users.getUser().getGender()} eq 1">男</td>
+					<td th:if="${Users.getUser().getGender()} eq 2">女</td>
                     <td th:text="${Users.getUser().getCity()}">北京市</td>
 					<td th:text="${Users.getReportNum()}">9</td>
 				</tr>

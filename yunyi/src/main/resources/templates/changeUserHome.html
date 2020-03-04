@@ -46,9 +46,12 @@
 			<div id="tab-system" class="HuiTab">
 
 				<div >
-					<table><tr ><strong>用户名：</strong><lable th:text="${usp.userID}">1001</lable></tr>
+					<table>
+						<tr ><strong>用户名：</strong><lable th:text="${usp.userID}">1001</lable></tr>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-					<tr ><strong>模板号：</strong><lable th:text="${usp.modelID}">1001</lable></tr></table>
+<!--						<tr ><strong>模板号：</strong><lable th:text="${usp.modelID}">1001</lable></tr>-->
+						<tr ><strong></strong><lable></lable></tr>
+					</table>
 				</div>
 
                 <input type="hidden" name="userID" th:value="${usp.userID}" >
