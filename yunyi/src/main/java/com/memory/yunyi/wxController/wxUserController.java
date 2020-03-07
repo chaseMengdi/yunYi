@@ -87,7 +87,7 @@ public class wxUserController {
      *
      * @param code      wx.login获得的code
      * @param nickName  wx.getUserInfo微信昵称
-     * @param gender    1 男，0 女
+     * @param gender    0 未知，1 男，2 女
      * @param avatarUrl 头像地址
      * @param province  省份
      * @param city      城市

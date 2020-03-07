@@ -75,7 +75,7 @@ public class wxUpgController {
 
     /**
      * 上传图片接口
-     * @param file
+     * @param file 参数名称
      * @return
      */
     @RequestMapping("/uploadImg")
