@@ -86,54 +86,54 @@ homepage 操作其他人主页，以及编辑自己主页
 
 登录界面
 
-![img](images/login.png)
+<img src="images/login.png" alt="img" style="zoom:50%;" />
 
 首页
 
-![img](images/index.png)
+<img src="images/index.png" alt="img" style="zoom:50%;" />
 
 用户列表/用户状态管理(封禁与解封)
 
-![img](images/userList.png)
+<img src="images/userList.png" alt="img" style="zoom:50%;" />
 
 更改用户主页
 
-![img](images/changeUserHomepage.png)
+<img src="images/changeUserHomepage.png" alt="img" style="zoom:50%;" />
 
 点赞统计
 
-![img](images/likeCount.png)
+<img src="images/likeCount.png" alt="img" style="zoom:50%;" />
 
 投诉统计
 
-![img](images/complainCount.png)
+<img src="images/complainCount.png" alt="img" style="zoom:50%;" />
 
 登录日志
 
-![img](images/log.png)
+<img src="images/log.png" alt="img" style="zoom:50%;" />
 
 图表展示
 
-![img](images/echarts.png)
+<img src="images/echarts.png" alt="img" style="zoom:50%;" />
 
 ## 3.2 用户端
 
 微信授权登录
 
-![image-20200307151147900](images/wxLogin.png)
+<img src="images/wxLogin.png" alt="image-20200307151147900" style="zoom: 50%;" />
 
 查看所有用户/寻找老乡
 
-![image-20200307151244294](images/wxList.png)
+<img src="images/wxList.png" alt="image-20200307151244294" style="zoom:50%;" />
 
 更新个人信息(修改头像昵称)/跳转个人主页
 
-![image-20200307151331372](images/wxMypage.png)
+<img src="images/wxMypage.png" alt="image-20200307151331372" style="zoom:50%;" />
 
 编辑个人主页(上传图片文字并保存)
 
-![image-20200307151433831](images/wxHomepage.png)
+<img src="images/wxHomepage.png" alt="image-20200307151433831" style="zoom:50%;" />
 
 对他人主页进行浏览/点赞/投诉/评论操作
 
-![image-20200307151540089](images/wxHomePageOthers.png)
+<img src="images/wxHomePageOthers.png" alt="image-20200307151540089" style="zoom:50%;" />
