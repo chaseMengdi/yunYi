@@ -1,8 +1,15 @@
-#windwos上传文件存放路径
-upload-path: D:/upload/
-
-##linux上传文件存放路径
-#upload-path: /root/upload/
+#    腾讯云COS相关配置，注入类常量
+tencent-cloud:
+  accessKey: exampleAccessKey
+  secretKey: exampleSecretKey
+  #bucket地域信息
+  bucket: ap-chengdu
+  #bucket全称，{name}-{appid}
+  bucketName: yunyi-1255699257
+  # 域名路径，用于拼接最终网址
+  path: https://yunyi-1255699257.cos.ap-chengdu.myqcloud.com
+  #前缀
+  prefix: examplePrefix
 
 spring:
     servlet:
